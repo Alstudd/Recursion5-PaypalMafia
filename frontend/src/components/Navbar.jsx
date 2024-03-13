@@ -1,6 +1,6 @@
 import { Presentation, Square } from "lucide-react";
 import { Send, Inbox } from "lucide-react";
-// import { onAuthStateChanged, signOut } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { auth } from "../firebase";
 
