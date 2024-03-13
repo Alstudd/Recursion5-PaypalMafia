@@ -1,12 +1,36 @@
 import { Presentation, Square } from "lucide-react";
 import { Send, Inbox } from "lucide-react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
+import logo from '../assets/logo.png'
 import React, { useEffect, useState } from "react";
 import { auth } from "../firebase";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 const Navbar = () => {
   const [userAuth, setUserAuth] = useState(null);
-
+  const auth = getAuth();
+  const provider = new GoogleAuthProvider();
+  const userSignin = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+      }).catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+      });
+  }
   useEffect(() => {
     const listen = onAuthStateChanged(
       auth,
@@ -41,7 +65,7 @@ const Navbar = () => {
             href="/"
             className="flex items-center text-black space-x-3 rtl:space-x-reverse"
           >
-            <Square />
+            <img src={logo} className="h-8 w-8" alt="Logo"/>
             <span className="self-center text-2xl font-semibold whitespace-nowrap text-black">
               Public Square
             </span>
@@ -96,12 +120,12 @@ const Navbar = () => {
                   </button>
                 </>
               ) : (
-                <a
-                  href="/login"
+                <button
+                  onClick={userSignin}
                   className="block py-2 px-3 text-gray-900 rounded-full hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
                 >
                   SignUp / Login
-                </a>
+                </button>
               )}
             </ul>
           </div>

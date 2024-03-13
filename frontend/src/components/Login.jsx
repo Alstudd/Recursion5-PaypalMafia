@@ -100,7 +100,7 @@ const Login = () => {
 						Submit
 					</button>
 				</form>
-				{userAuth ? <Redirect to="/" /> : ""}
+				{userAuth ? <div>Hi user</div> : ""}
 			</div>
 		</div>
 	);
