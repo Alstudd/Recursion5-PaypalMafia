@@ -8,6 +8,7 @@ import Dashboard from "./components/Dashboard";
 import Home from "./components/Home";
 import ComplaintList from "./components/ComplaintList";
 import Nav from "./components/Nav";
+import Complaint from "./components/Complaint";
 
 const router = createBrowserRouter([
 	{
