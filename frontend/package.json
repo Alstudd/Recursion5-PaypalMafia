@@ -22,8 +22,14 @@
     "microsoft-cognitiveservices-speech-sdk": "^1.36.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+<<<<<<< HEAD
     "react-router-dom": "^6.22.3",
     "swiper": "^11.0.7"
+=======
+    "react-mic": "^12.4.6",
+    "react-router-dom": "^6.22.3",
+    "react-speech": "^1.0.2"
+>>>>>>> 1a9f749c329a495cd44b355a2c73ef44d276b6dc
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.7",
