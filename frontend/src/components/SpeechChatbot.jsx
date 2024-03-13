@@ -1,51 +1,51 @@
 import React, { useState, useEffect, useRef } from "react";
 import * as sdk from "microsoft-cognitiveservices-speech-sdk";
 import { FaMicrophone, FaStop } from "react-icons/fa";
-import { Dialog, Transition } from '@headlessui/react'
-import { Fragment } from 'react'
+import { Dialog, Transition } from "@headlessui/react";
+import { Fragment } from "react";
 
 const SPEECH_KEY = "e448f4b6437a42a1a35e480d8ab91628";
 const SPEECH_REGION = "eastus";
 
-export default function SpeechChatbot() {
+export default function SpeechChatbot({ getResponse }) {
 	const [isListening, setIsListening] = useState(false);
 	const speechConfig = useRef(null);
 	const audioConfig = useRef(null);
 	const recognizer = useRef(null);
 
 	const [myTranscript, setMyTranscript] = useState("");
-	const [recognizingTranscript, setRecTranscript] = useState(""); 
-	let [isOpen, setIsOpen] = useState(false)
+	const [recognizingTranscript, setRecTranscript] = useState("");
+	let [isOpen, setIsOpen] = useState(false);
 
-	const [selectedLanguage, setSelectedLanguage] = useState("en-IN"); 
+	const [selectedLanguage, setSelectedLanguage] = useState("en-IN");
 
 	const languages = {
-		"English": "en-IN",
-		"Hindi": "hi-IN",
-		"Marathi": "mr-IN",
-		"Tamil": "ta-IN",
-		"Telugu": "te-IN",
-		"Bengali": "bn-IN",
-		"Gujarati": "gu-IN",
-		"Kannada": "kn-IN",
-		"Malayalam": "ml-IN",
-		"Punjabi": "pa-IN",
-		"Odia": "or-IN",
-		"Assamese": "as-IN",
+		English: "en-IN",
+		Hindi: "hi-IN",
+		Marathi: "mr-IN",
+		Tamil: "ta-IN",
+		Telugu: "te-IN",
+		Bengali: "bn-IN",
+		Gujarati: "gu-IN",
+		Kannada: "kn-IN",
+		Malayalam: "ml-IN",
+		Punjabi: "pa-IN",
+		Odia: "or-IN",
+		Assamese: "as-IN",
 	};
 
 	function closeModal() {
-		setIsOpen(false)
+		setIsOpen(false);
 	}
 
 	function openModal() {
-		setIsOpen(true)
+		setIsOpen(true);
 	}
 
 	const handleLanguageChange = (event) => {
-        const selectedLanguageValue = event.target.value;
-        setSelectedLanguage(selectedLanguageValue);
-    };
+		const selectedLanguageValue = event.target.value;
+		setSelectedLanguage(selectedLanguageValue);
+	};
 
 	useEffect(() => {
 		speechConfig.current = sdk.SpeechConfig.fromSubscription(
@@ -105,36 +105,25 @@ export default function SpeechChatbot() {
 			clearTimeout(stopListeningTimer); // Clear the timer
 			recognizer.current.stopContinuousRecognitionAsync(() => {
 				setIsListening(false);
+				getResponse(transcript);
 			});
 		};
-	};
-
-	const pauseListening = () => {
-		setIsListening(false);
-		recognizer.current.stopContinuousRecognitionAsync();
-		console.log("Paused listening.");
-	};
-
-	const resumeListening = () => {
-		if (!isListening) {
-			setIsListening(true);
-			recognizer.current.startContinuousRecognitionAsync(() => {
-				console.log("Resumed listening...");
-			});
-		}
 	};
 
 	const stopListening = () => {
 		setIsListening(false);
 		recognizer.current.stopContinuousRecognitionAsync(() => {
 			console.log("Speech recognition stopped.");
+			getResponse(transcript);
 		});
-		setIsOpen(false)
+		setIsOpen(false);
 	};
 
 	return (
 		<div>
-			<button onClick={openModal}><FaMicrophone className="text-black" /></button>
+			<button onClick={openModal}>
+				<FaMicrophone className="text-black" />
+			</button>
 			<Transition appear show={isOpen} as={Fragment}>
 				<Dialog as="div" className="relative z-10" onClose={closeModal}>
 					<Transition.Child
@@ -180,12 +169,23 @@ export default function SpeechChatbot() {
 											onChange={handleLanguageChange}
 											value={selectedLanguage}
 										>
-											<option disabled>Choose a Language</option>
-											{
-												Object.keys(languages).map((key, index) => {
-													return <option key={index} value={languages[key]}>{key}</option>
-												})
-											}
+											<option disabled>
+												Choose a Language
+											</option>
+											{Object.keys(languages).map(
+												(key, index) => {
+													return (
+														<option
+															key={index}
+															value={
+																languages[key]
+															}
+														>
+															{key}
+														</option>
+													);
+												}
+											)}
 										</select>
 
 										<div className="flex justify-between">
