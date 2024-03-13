@@ -1,21 +1,9 @@
-<<<<<<< HEAD
-import Dashboard from "./components/Dashboard";
-import Navbar from "./components/Navbar";
-
-function App() {
-
-  return (
-    <div className="bg-gray-100 ">
-      <Navbar/>
-      <Dashboard/>
-    </div>
-  )
-=======
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./components/Login";
 import Main from "./layouts/Main";
 import SpeechChatbot from "./components/SpeechChatbot";
 import Chatbot from "./components/Chatbot";
+import Dashboard from "./components/Dashboard";
 
 const router = createBrowserRouter([
 	{
@@ -38,6 +26,12 @@ const router = createBrowserRouter([
 				path: "/chatbot",
 				element: <Chatbot />,
 			},
+      {
+				path: "/dashboard",
+				element: <div className="bg-gray-100 ">
+        <Dashboard/>
+      </div>,
+			},
 		],
 	},
 ]);
@@ -48,7 +42,6 @@ function App() {
 			<RouterProvider router={router} />
 		</div>
 	);
->>>>>>> afdf4786fb3e7c4ddcdca6e7809e4592a84160e3
 }
 
 export default App;
