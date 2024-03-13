@@ -1,10 +1,30 @@
 import { Filter, Link2, Sliders } from "lucide-react";
 import { Card } from "@tremor/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
 import { Fragment, useState } from "react";
 
 const ComplaintList = () => {
+    const colRef = collection(db, "issue");
+  const [arr, setArr] = useState([]);
+
+  useEffect(() => {
+    getDocs(colRef)
+      .then((snapshot) => {
+        let issues = [];
+        snapshot.docs.forEach((doc) => {
+          issues.push({ ...doc.data(), id: doc.id });
+        });
+        setArr(issues);
+        console.log(issues);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, []);
+
   let [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {
@@ -100,9 +120,9 @@ const ComplaintList = () => {
                 </th>
               </tr>
             </thead>
-            {complaintlist.map((values, i) => {
+            {arr && arr.map((values, i) => {
               return (
-                  <tr className="w-full bg-white border-b">
+                  <tr key={i} className="w-full bg-white border-b">
                     <td
                       scope="row"
                       className="max-w-4 md:px-6 px-2 py-4 md:flex hidden font-medium text-gray-900 whitespace-nowrap"
@@ -110,18 +130,18 @@ const ComplaintList = () => {
                       <div className="flex-shrink-0">
                         <img
                           className="w-8 h-8 rounded-full"
-                          src={values.pic}
-                          alt={values.user}
+                          src={values.title}
+                          alt={values.title}
                         />
                       </div>
                     </td>
                     <th className="md:px-6 px-0 py-4">
                       <div className="flex-1 min-w-0 ms-4">
                         <p className="text-sm font-medium text-gray-900 truncate">
-                          {values.complaint}
+                          {values.title}
                         </p>
                         <p className="text-sm font-light text-gray-500 truncate">
-                          {values.user}
+                          {values.owner}
                         </p>
                       </div>
                     </th>
@@ -132,11 +152,11 @@ const ComplaintList = () => {
                     </td>
                     <td className="w-10 md:px-6 px-0 py-4 md:text-start text-end">
                       <div className="inline-flex items-center text-base font-semibold text-gray-900">
-                        {values.loc}
+                        {values.location}
                       </div>
                     </td>
                     <td className="w-10 text-start px-6 py-4">
-                      <a href={`complaints/${values.href}`} className="md:inline-flex py-2 items-center text-base font-light text-blue-700">
+                      <a href={`complaints/${values.id}`} className="md:inline-flex py-2 items-center text-base font-light text-blue-700">
                         <Link2/>
                       </a>
                     </td>
