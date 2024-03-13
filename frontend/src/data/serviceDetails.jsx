@@ -5,12 +5,12 @@ const ourServices = [
     icon: <MdSafetyCheck />,
     heading: "Security",
     detail:
-      "Maintain your data with high security, and privacy, Because we are using JWT and bcrypt",
+      "Maintain your data with high security, and privacy, Because we are using Blockchain",
   },
   {
     icon: <MdAnalytics />,
-    heading: "Comparison Tool",
-    detail: "Compare Prices and Ratings of different products and services",
+    heading: "Dashboard Analytics",
+    detail: "Analyze user complaints and feedback data",
   },
   {
     icon: <MdBook />,

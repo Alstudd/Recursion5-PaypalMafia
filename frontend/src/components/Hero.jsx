@@ -6,7 +6,7 @@ const Hero = () => {
     <div className="w-full -mt-24">
       <div className="flex flex-col items-center justify-center h-[620px] bgimg px-4 mb-16 max-sm:mt-4">
         <div className="mx-auto px-4 py-1 bg-white bg-opacity-20 rounded-full text-md text-white mb-2 backdrop-blur-sm cursor-pointer max-sm:text-sm">
-          <a href="/login">Public Square is working on a revloution 🚀👨‍💻</a>
+          <a href="#">Public Square is working on a revloution 🚀👨‍💻</a>
         </div>
         <div className="text-center">
           <h1 className="text-5xl text-white text-center max-sm:text-3xl font-bold hero-text z-0 px-4">
@@ -21,7 +21,7 @@ const Hero = () => {
             </span>
           </p>
         </div>
-        <a href="/login">
+        <a href="#">
           <div className="p-2 w-fit bg-black gap-3 backdrop-blur-md flex rounded-full z-10 relative top-7 bg-opacity-30">
             <div className="bg-white h-14 rounded-full py-2 pl-4 px-5 w-fit flex items-center justify-center cursor-pointer">
               <img src="/restros.svg" alt="" className="mr-2 max-sm:hidden" />

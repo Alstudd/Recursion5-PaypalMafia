@@ -24,10 +24,7 @@ export default function Slider() {
               <div className="flex flex-col rounded-br-[15px] rounded-bl-[15px] bg-white shadow-md px-5 pb-5 pt-3">
                 <p className="text-[1.5rem] w-full font-bold">{card.title}</p>
                 <p className="text-gray-500">{card.place}</p>
-                <p>
-                  {card.rating}/10 ({card.review} reviews)
-                </p>
-                <p className="text-xl mt-4 font-bold">${card.price}/night</p>
+                <p className="text-xl mt-4 font-bold bg-blue-500 rounded-xl text-center px-4 py-1 text-white w-fit">{card.domain}</p>
               </div>
             </div>
           </SwiperSlide>

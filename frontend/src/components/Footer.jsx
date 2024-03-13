@@ -21,11 +21,10 @@ export default function Footer() {
             </div>
           </h6>
           <ol>
-            <p className="py-1">TCET</p>
-            {/* <p className="py-1">Thakur Village</p> */}
-            <p className="py-1">Kandivali (E)</p>
-            <p className="py-1">Mumbai-101</p>
-            <p className="py-1">Class 608</p>
+            <p className="py-1">Public Square</p>
+            <p className="py-1">Malad (W)</p>
+            <p className="py-1">Link Road</p>
+            <p className="py-1">Mumbai-64</p>
           </ol>
         </div>
         <div className='ml-5 md:ml-0'>
@@ -38,9 +37,8 @@ export default function Footer() {
           </h6>
           <ol className="links">
             <li className="py-1"><a href="/">Home</a></li>
-            <li className="py-1"><a href="/achievements">Achievements</a></li>
-            <li className="py-1"><a href="/students">Students</a></li>
-            {/* <li className="py-1"><a href="/resources">Resources</a></li> */}
+            <li className="py-1"><a href="/dashboard">Dashboard</a></li>
+            <li className="py-1"><a href="/chatbot">Chatbot</a></li>
             <li className="py-1"><a href="/contact">Contact</a></li>
           </ol>
         </div>
@@ -52,7 +50,7 @@ export default function Footer() {
               </span>
             </div>
           </h6>
-          <p className="py-4">The latest achievements, opportunities and resources sent to your inbox weekly.</p>
+          <p className="py-4">The latest news and resources sent to your inbox weekly.</p>
           <form className="flex flex-col sm:flex-row">
             <input className="w-full p-2 mr-4 rounded-md mb-2 border-2 border-black" type="email" placeholder="Enter email" />
             <button className="px-4 py-2 mb-2 rounded-md bg-blue-600 text-white" type="submit">Subscribe</button>
