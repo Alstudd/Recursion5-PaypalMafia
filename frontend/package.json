@@ -10,14 +10,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.3.0",
     "@headlessui/react": "^1.7.18",
     "@headlessui/tailwindcss": "^0.2.0",
     "@remixicon/react": "^4.2.0",
     "@tremor/react": "^3.14.1",
+    "dotenv": "^16.4.5",
     "firebase": "^10.8.1",
     "lucide-react": "^0.356.0",
+    "markdown-it": "^14.0.0",
+    "microsoft-cognitiveservices-speech-sdk": "^1.36.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.7",
