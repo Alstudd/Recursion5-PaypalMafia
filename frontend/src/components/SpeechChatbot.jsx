@@ -61,7 +61,13 @@ export default function SpeechChatbot() {
 			setIsListening(true);
 		});
 
+		// Automatically stop listening after 30 seconds (adjust as needed)
+		const stopListeningTimer = setTimeout(() => {
+			stopListening();
+		}, 30000); // 30 seconds
+
 		return () => {
+			clearTimeout(stopListeningTimer); // Clear the timer
 			recognizer.current.stopContinuousRecognitionAsync(() => {
 				setIsListening(false);
 			});
@@ -103,9 +109,8 @@ export default function SpeechChatbot() {
 			</button>
 
 			<div>
-				<div>Recognizing Transcript : {recognizingTranscript}</div>
-
-				<div>RecognizedTranscript : {myTranscript}</div>
+				<div>Recognizing Transcript: {recognizingTranscript}</div>
+				<div>Recognized Transcript: {myTranscript}</div>
 			</div>
 		</div>
 	);
