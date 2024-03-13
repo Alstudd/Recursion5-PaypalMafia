@@ -1,5 +1,4 @@
-import { Presentation, Square } from "lucide-react";
-import { Send, Inbox } from "lucide-react";
+import { BookCheck, Bot } from "lucide-react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import logo from '../assets/logo.png'
 import React, { useEffect, useState } from "react";
@@ -73,18 +72,18 @@ const Navbar = () => {
           <ul className="flex flex-row md:hidden">
             <li>
               <a
-                href="/projects"
+                href="/dashboard"
                 className="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
               >
-                <Presentation />
+                <BookCheck />
               </a>
             </li>
             <li>
               <a
-                href="/inbox"
+                href="/chatbot"
                 className="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
               >
-                <Inbox />
+                <Bot />
               </a>
             </li>
           </ul>
@@ -95,18 +94,18 @@ const Navbar = () => {
             <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 ">
               <li>
                 <a
-                  href="/projects"
+                  href="/dashboard"
                   className="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
                 >
-                  <Presentation />
+                  <BookCheck />
                 </a>
               </li>
               <li>
                 <a
-                  href="/inbox"
+                  href="/chatbot"
                   className="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
                 >
-                  <Inbox />
+                  <Bot />
                 </a>
               </li>
 
