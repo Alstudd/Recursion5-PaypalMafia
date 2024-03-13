@@ -5,6 +5,7 @@ import SpeechChatbot from "./components/SpeechChatbot";
 import TTS from "./components/TTS";
 import Chatbot from "./components/Chatbot";
 import Dashboard from "./components/Dashboard";
+import Home from "./components/Home";
 
 const router = createBrowserRouter([
 	{
@@ -13,7 +14,7 @@ const router = createBrowserRouter([
 		children: [
 			{
 				path: "/",
-				element: <div>Hi</div>,
+				element: <Home />,
 			},
 			{
 				path: "/login",

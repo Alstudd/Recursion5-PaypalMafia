@@ -1,0 +1,88 @@
+/* Animation */
+h6 div span {
+    animation: moving 2s linear infinite;
+}
+
+@keyframes moving {
+    0% {
+        left: -20px;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+.links a {
+    transition: all 0.3s ease;
+}
+
+.links a:hover {
+    color: white;
+    padding-left: 10px;
+}
+.navLinks a {
+    transition: all 0.3s ease;
+}
+
+.navLinks a:hover {
+    color: blue;
+    padding-left: 10px;
+}
+
+.zoom-in figure * {
+    -webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+
+.zoom-in figure:hover * {
+    -webkit-transform: scale(1.3);
+	transform: scale(1.3);
+}
+
+.students-zoom-in figure * {
+    z-index: -1;
+    -webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+
+.students-zoom-in figure:hover * {
+    -webkit-transform: scale(1.3);
+	transform: scale(1.3);
+}
+
+.profileHover .card-elements {
+    opacity: 0.2;
+}
+
+.opp-card {
+    transition: all 300ms ease-in;
+}
+
+
+.liAnimate {
+    box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+    transition: transform 0.5s;
+}
+
+.liAnimate:hover {
+    transform: scale(1.1);
+    z-index: 100;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+    font-weight: bold;
+}
+
+.spanAnimate {
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+}
+.liAnimate:hover .spanAnimate {
+    background: white;
+    color: black;
+}

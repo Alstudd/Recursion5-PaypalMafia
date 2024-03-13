@@ -1,16 +1,16 @@
 import React from "react";
-import Why from "../components/Why";
-import CarouselSection from "../components/CarouselSection";
-import Services from "../components/Services";
-import StartYourJourney from "../components/StartYourJourney";
+import CarouselSection from "./CarouselSection";
+import Services from "./Services";
+import StartYourJourney from "./StartYourJourney";
+import Footer from "./Footer";
 
 function Home() {
   return (
     <div>
-      <Why />
       <CarouselSection />
       <Services />
       <StartYourJourney />
+      <Footer />
     </div>
   );
 }
