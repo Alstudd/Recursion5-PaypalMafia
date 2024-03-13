@@ -7,7 +7,7 @@ import { Fragment } from "react";
 const SPEECH_KEY = "e448f4b6437a42a1a35e480d8ab91628";
 const SPEECH_REGION = "eastus";
 
-export default function SpeechChatbot({ getResponse }) {
+export default function SpeechChatbot({ getSpeechValue }) {
 	const [isListening, setIsListening] = useState(false);
 	const speechConfig = useRef(null);
 	const audioConfig = useRef(null);
@@ -62,13 +62,9 @@ export default function SpeechChatbot({ getResponse }) {
 
 		const processRecognizedTranscript = (event) => {
 			const result = event.result;
-			console.log("Recognition result:", result);
 
 			if (result.reason === sdk.ResultReason.RecognizedSpeech) {
 				const transcript = result.text;
-				console.log("Transcript: -->", transcript);
-				// Call a function to process the transcript as needed
-
 				setMyTranscript(transcript);
 			}
 		};
@@ -105,7 +101,7 @@ export default function SpeechChatbot({ getResponse }) {
 			clearTimeout(stopListeningTimer); // Clear the timer
 			recognizer.current.stopContinuousRecognitionAsync(() => {
 				setIsListening(false);
-				getResponse(transcript);
+				getSpeechValue({text: myTranscript, lang: selectedLanguage});
 			});
 		};
 	};
@@ -114,7 +110,7 @@ export default function SpeechChatbot({ getResponse }) {
 		setIsListening(false);
 		recognizer.current.stopContinuousRecognitionAsync(() => {
 			console.log("Speech recognition stopped.");
-			getResponse(transcript);
+			getSpeechValue({text: myTranscript, lang: selectedLanguage});
 		});
 		setIsOpen(false);
 	};
