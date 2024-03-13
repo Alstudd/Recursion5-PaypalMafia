@@ -16,6 +16,7 @@
     "@tremor/react": "^3.14.1",
     "firebase": "^10.8.1",
     "lucide-react": "^0.356.0",
+    "microsoft-cognitiveservices-speech-sdk": "^1.36.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3"

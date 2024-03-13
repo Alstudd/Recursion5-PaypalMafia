@@ -1,9 +1,7 @@
-// src/App.jsx
-
 import { useEffect, useState } from "react";
 import * as speechsdk from "microsoft-cognitiveservices-speech-sdk";
 
-function App() {
+function SpeechChatbot() {
 	const [displayText, setDisplayText] = useState(
 		"Speak into your microphone..."
 	);
@@ -40,11 +38,11 @@ function App() {
 	}, []);
 
 	return (
-		<div className="App">
+		<div className="">
 			<h1>Speech-to-Text Example</h1>
 			<p>{displayText}</p>
 		</div>
 	);
 }
 
-export default App;
+export default SpeechChatbot;
