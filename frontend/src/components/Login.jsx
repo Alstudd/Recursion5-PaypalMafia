@@ -2,7 +2,7 @@ import { createUserWithEmailAndPassword , signInWithEmailAndPassword } from "fir
 import { auth } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import React, { useEffect, useState } from "react";
-import  { Redirect } from 'react-router-dom'
+// import  { Redirect } from 'react-router-dom'
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -96,7 +96,9 @@ const Login = () => {
           </button>
         </form>
         {userAuth ? (
-          <Redirect to="/" />
+          <div>
+            <h1>Logged In</h1>
+          </div>
         ) : (
           ""
         )}
