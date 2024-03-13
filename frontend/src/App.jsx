@@ -5,11 +5,8 @@ import SpeechChatbot from "./components/SpeechChatbot";
 import TTS from "./components/TTS";
 import Chatbot from "./components/Chatbot";
 import Dashboard from "./components/Dashboard";
-<<<<<<< HEAD
 import Home from "./components/Home";
-=======
 import ComplaintList from "./components/ComplaintList";
->>>>>>> 5c71230aa745e7d99e725f29a52c34c3af6dba90
 
 const router = createBrowserRouter([
 	{
