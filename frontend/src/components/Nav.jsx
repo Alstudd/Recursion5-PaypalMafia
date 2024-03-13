@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 import { auth } from "../firebase";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
-const Navbar = () => {
+const Nav = () => {
   const [userAuth, setUserAuth] = useState(null);
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
@@ -66,7 +66,7 @@ const Navbar = () => {
             className="flex items-center text-black space-x-3 rtl:space-x-reverse"
           >
             <img src={logo} className="h-8 w-8" alt="Logo"/>
-            <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">
+            <span className="self-center text-2xl font-semibold whitespace-nowrap text-black">
               Public Square
             </span>
           </a>
@@ -74,7 +74,7 @@ const Navbar = () => {
             <li>
               <a
                 href="/projects"
-                className="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
+                className="block py-2 px-3 text-black rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
               >
                 <Presentation />
               </a>
@@ -82,7 +82,7 @@ const Navbar = () => {
             <li>
               <a
                 href="/inbox"
-                className="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
+                className="block py-2 px-3 text-black rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
               >
                 <Inbox />
               </a>
@@ -96,7 +96,7 @@ const Navbar = () => {
               <li>
                 <a
                   href="/projects"
-                  className="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
+                  className="block py-2 px-3 text-black rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
                 >
                   <Presentation />
                 </a>
@@ -104,7 +104,7 @@ const Navbar = () => {
               <li>
                 <a
                   href="/inbox"
-                  className="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
+                  className="block py-2 px-3 text-black rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
                 >
                   <Inbox />
                 </a>
@@ -113,7 +113,7 @@ const Navbar = () => {
               {userAuth ? (
                 <>
                   <button
-                    className="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
+                    className="block py-2 px-3 text-black rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
                     onClick={userSignout}
                   >
                     Log Out
@@ -122,7 +122,7 @@ const Navbar = () => {
               ) : (
                 <button
                   onClick={userSignin}
-                  className="block py-2 px-3 text-white rounded-full hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
+                  className="block py-2 px-3 text-black rounded-full hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
                 >
                   SignUp / Login
                 </button>
@@ -135,4 +135,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Nav;

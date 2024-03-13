@@ -1,3 +1,39 @@
 .opp-card {
     transition: all 300ms ease-in;
 }
+.bgimg{
+    background-image: url('https://plus.unsplash.com/premium_photo-1676998931123-75789162f170?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .hero-text{
+    filter: drop-shadow(0 0 1.5rem #000000);
+  }
+  .textgrad{
+    background: linear-gradient(90deg, #F5F29D 0%, #FFA7EC 50.5%, #FFA7A7 98%);
+    background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+  }
+  .textgrad2{
+    background: linear-gradient(90deg, #038dff 0%, #4c3fff 50.5%, #2f7df3 98%);
+    background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+  }
+
+  .gradient-forum{
+    width: 1018px;
+height: 438px;
+border-radius: 200px;
+flex-shrink: 0;
+    position: absolute;
+    z-index: -2000;
+    top: 0;
+    background: linear-gradient(180deg, #285afdb0 0%, rgba(0, 255, 242, 0.897) 59%, rgba(255, 0, 85, 0.959) 80%);
+
+opacity: 0.4;
+filter: blur(172.5px);
+  }
