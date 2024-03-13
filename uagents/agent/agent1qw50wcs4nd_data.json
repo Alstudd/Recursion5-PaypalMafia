@@ -1,0 +1,18 @@
+{
+    "1": {
+        "seats": 2,
+        "time_start": 16,
+        "time_end": 22
+    },
+    "2": {
+        "seats": 4,
+        "time_start": 21,
+        "time_end": 21
+    },
+    "3": {
+        "seats": 4,
+        "time_start": 17,
+        "time_end": 19
+    },
+    "total_queries": 1
+}
