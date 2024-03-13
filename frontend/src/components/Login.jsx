@@ -1,9 +1,8 @@
-"use client";
 import { createUserWithEmailAndPassword , signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../lib/firebase";
+import { auth } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import React, { useEffect, useState } from "react";
-import { redirect } from "next/navigation";
+import  { Redirect } from 'react-router-dom'
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -97,7 +96,7 @@ const Login = () => {
           </button>
         </form>
         {userAuth ? (
-          redirect("/")
+          <Redirect to="/" />
         ) : (
           ""
         )}
