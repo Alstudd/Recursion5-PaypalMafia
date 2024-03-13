@@ -55,7 +55,8 @@ const router = createBrowserRouter([
         path: "/complaints",
         element: (
           <div className="md:min-h-[100vh] min-h-full bg-gray-100 ">
-            <ComplaintList />
+            <Nav />
+            <Complaint />
           </div>
         ),
       },
