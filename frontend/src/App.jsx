@@ -7,6 +7,7 @@ import Chatbot from "./components/Chatbot";
 import Dashboard from "./components/Dashboard";
 import Home from "./components/Home";
 import ComplaintList from "./components/ComplaintList";
+import Nav from "./components/Nav";
 
 const router = createBrowserRouter([
 	{
@@ -19,22 +20,34 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "/login",
-				element: <Login />,
+				element: <div>
+          <Nav />
+          <Login />
+        </div>,
 			},
 			{
 				path: "/joytest",
-				element: <SpeechChatbot />,
+				element: <div>
+          <Nav />
+          <SpeechChatbot />
+        </div>,
 			},
 			{
 				path: "/chatbot",
-				element: <Chatbot />,
+				element: <div>
+          <Nav />
+          <Chatbot />
+        </div>,
 			},
 			{
 				path: "/dashboard",
 				element: (
-					<div className="bg-gray-100 ">
+					<div>
+            <Nav />
+            <div className="bg-gray-100 ">
 						<Dashboard />
 					</div>
+          </div>
 				),
 			},
       {

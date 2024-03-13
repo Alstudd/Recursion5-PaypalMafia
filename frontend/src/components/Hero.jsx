@@ -6,7 +6,7 @@ const Hero = () => {
     <div className="w-full -mt-24">
       <div className="flex flex-col items-center justify-center h-[620px] bgimg px-4 mb-16 max-sm:mt-4">
         <div className="mx-auto px-4 py-1 bg-white bg-opacity-20 rounded-full text-md text-white mb-2 backdrop-blur-sm cursor-pointer max-sm:text-sm">
-          <a href="/login">Login as Guest 👽👻</a>
+          <a href="/login">Login with Google 🚀👨‍💻</a>
         </div>
         <div className="text-center">
           <h1 className="text-5xl text-white text-center max-sm:text-3xl font-bold hero-text z-0 px-4">
