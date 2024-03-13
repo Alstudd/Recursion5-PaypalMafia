@@ -28,7 +28,7 @@ async def clean(ctx: Context):
         if status == "Profanity_detected":
             flagged.append(owner)
             
-        doc.reference.delete()
+        # doc.reference.delete()
 
     print(flagged)
  
