@@ -51,23 +51,27 @@ const router = createBrowserRouter([
 				),
 			},
       {
-				path: "/complaints",
-				element: (
-					<div className="md:min-h-[100vh] min-h-full bg-gray-100 ">
-						<ComplaintList/>
-					</div>
-				),
-			},
-		],
-	},
+        path: "/complaints",
+        element: (
+          <div className="md:min-h-[100vh] min-h-full bg-gray-100 ">
+            <Complaint />
+          </div>
+        ),
+      },
+      {
+        element: <Complaint />,
+        path: "complaints/:complaintId",
+      },
+    ],
+  },
 ]);
 
 function App() {
-	return (
-		<div>
-			<RouterProvider router={router} />
-		</div>
-	);
+  return (
+    <div>
+      <RouterProvider router={router} />
+    </div>
+  );
 }
 
 export default App;
