@@ -40,7 +40,9 @@ function SpeechChatbot() {
 	return (
 		<div className="">
 			<h1>Speech-to-Text Example</h1>
+			kkuhoh
 			<p>{displayText}</p>
+			hi
 		</div>
 	);
 }
