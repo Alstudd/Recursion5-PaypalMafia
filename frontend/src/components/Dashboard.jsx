@@ -1,8 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { AreaChart, Card, DonutChart, BarChart } from "@tremor/react";
 import { Filter, Sliders, SortAsc } from "lucide-react";
 
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
+
 const Dashboard = () => {
+  const colRef = collection(db, "issue");
+  const [complaintArr, setComplaintArr] = useState([]);
+
+  let newPositive = 0;
+  let newNegative = 0;
+
+  const countStatus = (setComplaintArr) => {
+    for (let i = 0; i < setComplaintArr.length; i++) {
+      if (setComplaintArr[i].status === true) {
+        newPositive += 1;
+      } else {
+        newNegative += 1;
+      }
+    }
+  };
+
+  useEffect(() => {
+    getDocs(colRef)
+      .then((snapshot) => {
+        let issues = [];
+        snapshot.docs.forEach((doc) => {
+          issues.push({ ...doc.data(), id: doc.id });
+        });
+        setComplaintArr(issues);
+        console.log(issues);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, []);
+
   const complaintlist = [
     {
       complaint: "No Water",
@@ -47,12 +81,12 @@ const Dashboard = () => {
 
   const sales = [
     {
-      name: "New York",
-      sales: 980,
+      name: "Solved Issues",
+      count: newPositive,
     },
     {
-      name: "London",
-      sales: 120,
+      name: "Unsolved Issues",
+      count: newNegative,
     },
   ];
 
@@ -175,7 +209,7 @@ const Dashboard = () => {
             <DonutChart
               data={sales}
               className="mt-4 h-[11rem]"
-              category="sales"
+              category="count"
               index="name"
               valueFormatter={valueFormatter}
               colors={["blue", "cyan"]}
@@ -241,75 +275,79 @@ const Dashboard = () => {
         </div> */}
       </div>
       <a href="/complaints">
-      <Card className="my-3">
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong">
-            Complaint List
-          </h3>
-        </div>
-        <table role="list" className="w-full divide-y divide-gray-200">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50">
-            <tr>
-              <th
-                scope="col"
-                className="max-w-6 md:px-6 md:flex hidden px-2 py-3"
-              >
-                User
-              </th>
-              <th scope="col" className="md:px-6 px-2 py-3">
-                Complaint
-              </th>
-              <th scope="col" className="text-start md:block hidden px-6 py-3">
-                Count
-              </th>
-              <th
-                scope="col"
-                className="md:text-start text-end md:px-6 px-2 py-3"
-              >
-                Location
-              </th>
-            </tr>
-          </thead>
-          {complaintlist.map((values, i) => {
-            return (
-              <tr key={i} className="w-full bg-white border-b">
-                <td
-                  scope="row"
-                  className="max-w-4 md:px-6 px-2 py-4 md:flex hidden font-medium text-gray-900 whitespace-nowrap"
+        <Card className="my-3">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong">
+              Complaint List
+            </h3>
+          </div>
+          <table role="list" className="w-full divide-y divide-gray-200">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+              <tr>
+                <th
+                  scope="col"
+                  className="max-w-6 md:px-6 md:flex hidden px-2 py-3"
                 >
-                  <div className="flex-shrink-0">
-                    <img
-                      className="w-8 h-8 rounded-full"
-                      src={values.pic}
-                      alt={values.user}
-                    />
-                  </div>
-                </td>
-                <th className="md:px-6 px-0 py-4">
-                  <div className="flex-1 min-w-0 ms-4">
-                    <p className="text-sm font-medium text-gray-900 truncate">
-                      {values.complaint}
-                    </p>
-                    <p className="text-sm text-gray-500 truncate">
-                      {values.user}
-                    </p>
-                  </div>
+                  User
                 </th>
-                <td className="w-10 text-start md:block hidden px-6 py-4">
-                  <div className="md:inline-flex items-center text-base font-semibold text-gray-900">
-                    {values.count}
-                  </div>
-                </td>
-                <td className="w-10 md:px-6 px-0 py-4 md:text-start text-end">
-                  <div className="inline-flex items-center text-base font-semibold text-gray-900">
-                    {values.loc}
-                  </div>
-                </td>
+                <th scope="col" className="md:px-6 px-2 py-3">
+                  Complaint
+                </th>
+                <th
+                  scope="col"
+                  className="text-start md:block hidden px-6 py-3"
+                >
+                  Count
+                </th>
+                <th
+                  scope="col"
+                  className="md:text-start text-end md:px-6 px-2 py-3"
+                >
+                  Location
+                </th>
               </tr>
-            );
-          })}
-        </table>
-      </Card>
+            </thead>
+            {complaintArr &&
+              complaintArr.map((values, i) => {
+                return (
+                  <tr key={i} className="w-full bg-white border-b">
+                    <td
+                      scope="row"
+                      className="max-w-4 md:px-6 px-2 py-4 md:flex hidden font-medium text-gray-900 whitespace-nowrap"
+                    >
+                      <div className="flex-shrink-0">
+                        <img
+                          className="w-8 h-8 rounded-full"
+                          src={values.pic}
+                          alt={values.owner}
+                        />
+                      </div>
+                    </td>
+                    <th className="md:px-6 px-0 py-4">
+                      <div className="flex-1 min-w-0 ms-4">
+                        <p className="text-sm font-medium text-gray-900 truncate">
+                          {values.title}
+                        </p>
+                        <p className="text-sm text-gray-500 truncate">
+                          {values.owner}
+                        </p>
+                      </div>
+                    </th>
+                    <td className="w-10 text-start md:block hidden px-6 py-4">
+                      <div className="md:inline-flex items-center text-base font-semibold text-gray-900">
+                        {values.count}
+                      </div>
+                    </td>
+                    <td className="w-10 md:px-6 px-0 py-4 md:text-start text-end">
+                      <div className="inline-flex items-center text-base font-semibold text-gray-900">
+                        {values.location}
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
+          </table>
+        </Card>
       </a>
     </div>
   );
