@@ -7,9 +7,9 @@ import SpeechChatbot from "./SpeechChatbot";
 
 // Initialize the model
 // console.log(import.meta.env.VITE_GOOGLE_API_KEY);
-const genAI = new GoogleGenerativeAI("AIzaSyCWlROgv6AYuAJF2QP_KcSsTnjRVKik1pU");
+const genAI = new GoogleGenerativeAI("AIzaSyCmcf37HTmaJOGD3570miTo8gdaL3FhPjI");
 
-const model = genAI.getGenerativeModel({ model: "gemini" });
+const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
 let history = [];
 
