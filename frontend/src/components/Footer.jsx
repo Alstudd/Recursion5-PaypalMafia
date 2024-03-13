@@ -54,7 +54,7 @@ export default function Footer() {
           </h6>
           <p className="py-4">The latest achievements, opportunities and resources sent to your inbox weekly.</p>
           <form className="flex flex-col sm:flex-row">
-            <input className="w-full p-2 mr-4 rounded-md mb-2" type="email" placeholder="Enter email" />
+            <input className="w-full p-2 mr-4 rounded-md mb-2 border-2 border-black" type="email" placeholder="Enter email" />
             <button className="px-4 py-2 mb-2 rounded-md bg-blue-600 text-white" type="submit">Subscribe</button>
           </form>
         </div>

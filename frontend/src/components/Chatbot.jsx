@@ -6,10 +6,10 @@ import "../styles/style.css";
 import SpeechChatbot from "./SpeechChatbot";
 
 // Initialize the model
-console.log(import.meta.env.VITE_GOOGLE_API_KEY);
-const genAI = new GoogleGenerativeAI("AIzaSyDi_8MqRcr6N_xyRirmwSIeetahByBDnbY");
+// console.log(import.meta.env.VITE_GOOGLE_API_KEY);
+const genAI = new GoogleGenerativeAI("AIzaSyCWlROgv6AYuAJF2QP_KcSsTnjRVKik1pU");
 
-const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+const model = genAI.getGenerativeModel({ model: "gemini" });
 
 let history = [];
 
@@ -110,7 +110,7 @@ const Chatbot = () => {
 			<div className="w-full min-h-screen flex flex-col p-6">
 				<section>
 					<div className="container mx-auto sm:px-4">
-						<div className="z-[20] relative flex flex-col min-w-0 break-words border bg-transparent border-1 border-gray-300 shadow-md rounded-xl">
+						<div className="relative flex flex-col min-w-0 break-words border bg-transparent border-1 border-gray-300 shadow-md rounded-xl">
 							<div className="flex align-items-center gap-3 mt-6 ml-6">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
@@ -138,7 +138,7 @@ const Chatbot = () => {
 									<path d="M9 13v2" />
 								</svg>
 								<h5 className="text-lg font-medium text-black mb-0">
-									PublicSquare AI Chatbot
+									Public Square AI Chatbot
 								</h5>
 							</div>
 							<div className="flex-auto p-6">
@@ -158,7 +158,7 @@ const Chatbot = () => {
 											ref={chatForm}
 											onKeyUp={handleKeyup}
 										>
-											<div className="flex gap-4 items-center">
+											<div className="flex gap-4 w-full items-center">
 												<SpeechChatbot
 													getResponse={getSpeechValue}
 												/>
