@@ -1,6 +1,7 @@
 import { Presentation, Square } from "lucide-react";
 import { Send, Inbox } from "lucide-react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
+import logo from '../assets/logo.png'
 import React, { useEffect, useState } from "react";
 import { auth } from "../firebase";
 
@@ -41,7 +42,7 @@ const Navbar = () => {
             href="/"
             className="flex items-center text-black space-x-3 rtl:space-x-reverse"
           >
-            <Square />
+            <img src={logo} className="h-8 w-8" alt="Logo"/>
             <span className="self-center text-2xl font-semibold whitespace-nowrap text-black">
               Public Square
             </span>
