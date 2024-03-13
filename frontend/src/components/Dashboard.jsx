@@ -9,10 +9,9 @@ const Dashboard = () => {
   const colRef = collection(db, "issue");
   const [complaintArr, setComplaintArr] = useState([]);
 
-  let newPositive = 0;
-  let newNegative = 0;
-
   const countStatus = (setComplaintArr) => {
+    let newPositive = 0;
+    let newNegative = 0;
     for (let i = 0; i < setComplaintArr.length; i++) {
       if (setComplaintArr[i].status === true) {
         newPositive += 1;
@@ -20,7 +19,52 @@ const Dashboard = () => {
         newNegative += 1;
       }
     }
+    return { newPositive, newNegative };
   };
+  const { newPositive, newNegative } = countStatus(complaintArr);
+
+  const countCategory = (setComplaintArr) => {
+    let newRoad = 0;
+    let newWat = 0;
+    let newElec = 0;
+    let newOthers = 0;
+    let newGar = 0;
+    for (let i = 0; i < setComplaintArr.length; i++) {
+      if (setComplaintArr[i].type === "Road" || setComplaintArr[i].type === 'fnsyV6Ze7Ufhkxcqnq20') {
+        newRoad += 1;
+      } else if (setComplaintArr[i].type === "Water" || setComplaintArr[i].type === 'YU3EJbpcs7lTo7Pqbgow') {
+        newWat += 1;
+      } else if (setComplaintArr[i].type === "Electricity" || setComplaintArr[i].type === 'iIntcTRGv0z8mIRXvYtL') {
+        newElec += 1;
+      } else if (setComplaintArr[i].type === "Garbage" || setComplaintArr[i].type === 'Ang7eN63LnIbkKPTcPvx') {
+        newGar += 1;
+      } else {
+        newOthers += 1;
+      }
+    }
+    return { newRoad, newElec, newGar, newWat, newOthers };
+  };
+  const { newRoad, newElec, newGar, newWat, newOthers } = countCategory(complaintArr);
+
+  const countLoc = (setComplaintArr) => {
+    let Nalla = 0;
+    let Malad = 0;
+    let Andheri = 0;
+    let Others = 0;
+    for (let i = 0; i < setComplaintArr.length; i++) {
+      if (setComplaintArr[i].location === "Nallasopara" ) {
+        Nalla += 1;
+      } else if (setComplaintArr[i].location === "Malad") {
+        Malad += 1;
+      } else if (setComplaintArr[i].location === "Andheri" ) {
+        Andheri += 1;
+      } else {
+        Others += 1;
+      }
+    }
+    return { Nalla, Malad, Andheri, Others };
+  };
+  const { Nalla, Malad, Andheri, Others } = countLoc(complaintArr);
 
   useEffect(() => {
     getDocs(colRef)
@@ -37,49 +81,30 @@ const Dashboard = () => {
       });
   }, []);
 
-  const complaintlist = [
+  const categoryStat = [
     {
-      complaint: "No Water",
-      pic: "",
-      user: "Alvin",
-      count: "12",
-      loc: "Andheri",
+      name: "Road",
+      "Category Count": newRoad,
     },
     {
-      complaint: "No Air",
-      pic: "",
-      user: "Joyvin",
-      count: "30",
-      loc: "Kandivali",
+      name: "Water",
+      "Category Count": newWat,
     },
     {
-      complaint: "No Road",
-      pic: "",
-      user: "Alston",
-      count: "19",
-      loc: "Malad",
-    },
-  ];
-  const newchartdata = [
-    {
-      name: "Amphibians",
-      "Number of threatened species": 2488,
+      name: "Electricity",
+      "Category Count": newElec,
     },
     {
-      name: "Birds",
-      "Number of threatened species": 1445,
+      name: "Garbage",
+      "Category Count": newGar,
     },
     {
-      name: "Crustaceans",
-      "Number of threatened species": 743,
-    },
-    {
-      name: "Ferns",
-      "Number of threatened species": 281,
+      name: "Others",
+      "Category Count": newOthers,
     },
   ];
 
-  const sales = [
+  const StatusRatio = [
     {
       name: "Solved Issues",
       count: newPositive,
@@ -94,29 +119,29 @@ const Dashboard = () => {
 
   const chartdata = [
     {
-      date: "Jan 22",
-      SemiAnalysis: 2890,
+      location: 'Nallasopara',
+      Issues: 2890,
       "The Pragmatic Engineer": 2338,
     },
     {
-      date: "Feb 22",
-      SemiAnalysis: 2756,
+      location: 'Malad',
+      Issues: 2756,
       "The Pragmatic Engineer": 2103,
     },
     {
-      date: "Mar 22",
-      SemiAnalysis: 3322,
+      location: 'Andheri',
+      Issues: 3322,
       "The Pragmatic Engineer": 2194,
     },
     {
-      date: "Apr 22",
-      SemiAnalysis: 3470,
+      location: "Apr 22",
+      Issues: 3470,
       "The Pragmatic Engineer": 2108,
     },
   ];
 
   const valueFormatter = function (number) {
-    return "$ " + new Intl.NumberFormat("us").format(number).toString();
+    return new Intl.NumberFormat("us").format(number).toString();
   };
   const dataFormatter = (number) =>
     Intl.NumberFormat("us").format(number).toString();
@@ -128,26 +153,26 @@ const Dashboard = () => {
           <div className="grid md:grid-cols-3 gap-3 mb-3 ">
             <Card className="mx-auto" decorationColor="indigo">
               <p className="text-tremor-default text-tremor-content dark:text-dark-tremor-content">
-                Sales
+                Problems in Nallasopara Region
               </p>
               <p className="text-3xl text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">
-                $34,743
+                {Nalla}
               </p>
             </Card>
             <Card className="mx-auto" decorationColor="indigo">
               <p className="text-tremor-default text-tremor-content dark:text-dark-tremor-content">
-                Sales
+              Problems in Malad Region
               </p>
               <p className="text-3xl text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">
-                $34,743
+                {Malad}
               </p>
             </Card>
             <Card className="mx-auto" decorationColor="indigo">
               <p className="text-tremor-default text-tremor-content dark:text-dark-tremor-content">
-                Sales
+              Problems in Andheri Region
               </p>
               <p className="text-3xl text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">
-                $34,743
+                {Andheri}
               </p>
             </Card>
           </div>
@@ -162,22 +187,22 @@ const Dashboard = () => {
               <AreaChart
                 className="mt-4 h-72"
                 data={chartdata}
-                index="date"
+                index="location"
                 yAxisWidth={60}
-                categories={["SemiAnalysis", "The Pragmatic Engineer"]}
+                categories={["Issues", "The Pragmatic Engineer"]}
                 colors={["indigo", "cyan"]}
                 valueFormatter={valueFormatter}
               />
             </Card>
             <Card>
               <h3 className="text-lg font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong">
-                Number of species threatened with extinction (2021)
+                Category based Issues faced by the People
               </h3>
               <BarChart
                 className="mt-6"
-                data={newchartdata}
+                data={categoryStat}
                 index="name"
-                categories={["Number of threatened species"]}
+                categories={["Category Count"]}
                 colors={["blue"]}
                 valueFormatter={dataFormatter}
                 yAxisWidth={48}
@@ -201,13 +226,14 @@ const Dashboard = () => {
           </Card>
           <Card className="h-full">
             <h3 className="text-lg font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong">
-              Number of species threatened with extinction (2021)
+              Completion Ratio
             </h3>
             <h3 className="text-tremor-default text-tremor-content dark:text-dark-tremor-content">
-              Newsletter Revenue
+              Ratio of the no. of complaints / the no. of complaints recieved by
+              the government
             </h3>
             <DonutChart
-              data={sales}
+              data={StatusRatio}
               className="mt-4 h-[11rem]"
               category="count"
               index="name"

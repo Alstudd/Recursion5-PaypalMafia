@@ -1,29 +1,36 @@
-import boto3
 from uagents import Agent, Context
+from transformers import pipeline
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import firestore
 
-lex = Agent(name="lex")
+pipe = pipeline("text-classification", model="Rishi-19/Profanity_Detection_Model_2")
+good_guy = Agent(name="good_guy")
 
-access_key = "AKIAQ6DRLSHDL5G3EC42"
-access_secret = "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"
-region = "us-east-1"
+cred = credentials.Certificate('./cred.json')
+firebase_admin.initialize_app(cred)
+db = firestore.client()
 
-client = boto3.client('lexv2-runtime', region_name=region,
-                      aws_access_key_id=access_key,
-                      aws_secret_access_key=access_secret)
+@good_guy.on_interval(10)
+async def clean(ctx: Context):
+    ctx.logger.info(f'hello, I am a {ctx.name}')
+    
+    collection_ref = db.collection('unfiltered_review')
+    docs = collection_ref.get()
+    flagged = []
 
-bot_id = 'SN0WUY4X6A'
-bot_alias_id = 'TSTALIASID'
-locale_id = 'en_US'
+    for doc in docs:
+        review = doc.to_dict().get('text')
+        owner = doc.to_dict().get('owner')
 
+        status = pipe(review)[0]['label']
 
-user_input = 'What is the weather today?'
-session = 'test'
+        if status == "Profanity_detected":
+            flagged.append(owner)
+            
+        # doc.reference.delete()
 
-response = client.recognize_utterance(
-    botId=bot_id,
-    botAliasId=bot_alias_id,
-    localeId=locale_id,
-    sessionId=session,
-    inputStream=user_input,
-    requestContentType="text/plain"
-)
+    print(flagged)
+ 
+if __name__ == "__main__":
+    good_guy.run()
