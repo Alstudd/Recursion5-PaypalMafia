@@ -6,7 +6,7 @@ import '../styles/animations.css';
 export default function Footer() {
   return (
     <div className='relative'>
-    <div className="absolute top-0 w-full bg-[#02044A] text-gray-300 pb-8 pt-14 px-2 rounded-tl-[125px]">
+    <div className="absolute top-0 w-full bg-white text-black pb-8 pt-14 px-2">
       <div className="max-w-[1240px] mx-auto grid grid-cols-3 md:grid-cols-5 border-b-2 border-gray-600 py-8">
         <div className='ml-5 pt-3'>
           <div className='zoom-in'><figure><img className='rounded-[50%]' width={180} src={logo} alt="logo" /></figure></div>
@@ -15,7 +15,7 @@ export default function Footer() {
         <div className='ml-5'>
           <h6 className="font-bold uppercase py-2 relative">
             Location
-            <div className='mt-1 w-20 h-1 bg-[#767676] rounded-md absolute top-8 left-0'>
+            <div className='mt-1 w-20 h-1 bg-black rounded-md absolute top-8 left-0'>
               <span className='w-3.5 h-1 bg-white rounded-md absolute top-0 left-2.5'>
               </span>
             </div>
@@ -31,7 +31,7 @@ export default function Footer() {
         <div className='ml-5 md:ml-0'>
           <h6 className="font-bold uppercase py-2 relative">
             Links
-            <div className='mt-1 w-12 h-1 bg-[#767676] rounded-md absolute top-8 left-0'>
+            <div className='mt-1 w-12 h-1 bg-black rounded-md absolute top-8 left-0'>
               <span className='w-3.5 h-1 bg-white rounded-md absolute top-0 left-2.5'>
               </span>
             </div>
@@ -47,7 +47,7 @@ export default function Footer() {
         <div className="mx-5 col-span-3 md:col-span-2 mt-8 md:mt-0 pt-2">
           <h6 className="pb-2 font-bold uppercase relative">
             Newsletter
-            <div className='w-[105px] h-1 bg-[#767676] rounded-md absolute top-7 left-0'>
+            <div className='w-[105px] h-1 bg-black rounded-md absolute top-7 left-0'>
               <span className='w-3.5 h-1 bg-white rounded-md absolute top-0 left-2.5'>
               </span>
             </div>
@@ -55,7 +55,7 @@ export default function Footer() {
           <p className="py-4">The latest achievements, opportunities and resources sent to your inbox weekly.</p>
           <form className="flex flex-col sm:flex-row">
             <input className="w-full p-2 mr-4 rounded-md mb-2" type="email" placeholder="Enter email" />
-            <button className="p-2 mb-2 rounded-md bg-blue-500" type="submit">Subscribe</button>
+            <button className="px-4 py-2 mb-2 rounded-md bg-blue-600 text-white" type="submit">Subscribe</button>
           </form>
         </div>
       </div>

@@ -66,7 +66,7 @@ const Navbar = () => {
             className="flex items-center text-black space-x-3 rtl:space-x-reverse"
           >
             <img src={logo} className="h-8 w-8" alt="Logo"/>
-            <span className="self-center text-2xl font-semibold whitespace-nowrap text-black">
+            <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">
               Public Square
             </span>
           </a>
@@ -74,7 +74,7 @@ const Navbar = () => {
             <li>
               <a
                 href="/projects"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+                className="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
               >
                 <Presentation />
               </a>
@@ -82,21 +82,21 @@ const Navbar = () => {
             <li>
               <a
                 href="/inbox"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+                className="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
               >
                 <Inbox />
               </a>
             </li>
           </ul>
           <div
-            className="hidden w-full text-white md:block md:w-auto"
+            className="hidden w-full md:block md:w-auto"
             id="navbar-default"
           >
-            <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white ">
+            <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 ">
               <li>
                 <a
                   href="/projects"
-                  className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+                  className="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
                 >
                   <Presentation />
                 </a>
@@ -104,7 +104,7 @@ const Navbar = () => {
               <li>
                 <a
                   href="/inbox"
-                  className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+                  className="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
                 >
                   <Inbox />
                 </a>
@@ -113,7 +113,7 @@ const Navbar = () => {
               {userAuth ? (
                 <>
                   <button
-                    className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+                    className="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
                     onClick={userSignout}
                   >
                     Log Out
@@ -122,7 +122,7 @@ const Navbar = () => {
               ) : (
                 <button
                   onClick={userSignin}
-                  className="block py-2 px-3 text-gray-900 rounded-full hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+                  className="block py-2 px-3 text-white rounded-full hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
                 >
                   SignUp / Login
                 </button>
