@@ -55,7 +55,9 @@ export default function SpeechChatbot() {
 			processRecognizedTranscript(e);
 		recognizer.current.recognizing = (s, e) =>
 			processRecognizingTranscript(e);
+	}, []);
 
+	const startListening = () => {
 		recognizer.current.startContinuousRecognitionAsync(() => {
 			console.log("Speech recognition started.");
 			setIsListening(true);
@@ -72,7 +74,7 @@ export default function SpeechChatbot() {
 				setIsListening(false);
 			});
 		};
-	}, []);
+	};
 
 	const pauseListening = () => {
 		setIsListening(false);
