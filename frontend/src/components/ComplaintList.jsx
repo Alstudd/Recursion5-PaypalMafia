@@ -34,50 +34,6 @@ const ComplaintList = () => {
   function openModal() {
     setIsOpen(true);
   }
-
-  const complaintlist = [
-    {
-      complaint: "No Water",
-      pic: "",
-      href: 1,
-      user: "Alvin",
-      count: "12",
-      loc: "Andheri",
-    },
-    {
-      complaint: "No Air",
-      pic: "",
-      href: 2,
-      user: "Joyvin",
-      count: "30",
-      loc: "Kandivali",
-    },
-    {
-      complaint: "No Road",
-      pic: "",
-      href: 3,
-      user: "Alston",
-      count: "19",
-      loc: "Malad",
-    },
-    {
-      complaint: "No Air",
-      pic: "",
-      href: 4,
-      user: "Joyvin",
-      count: "30",
-      loc: "Kandivali",
-    },
-    {
-      complaint: "No Road",
-      pic: "",
-      href: 5,
-      user: "Alston",
-      count: "19",
-      loc: "Malad",
-    },
-  ];
-
   return (
     <div>
       <div className="md:w-[90%] w-[95%] mx-auto grid md:grid-cols-4 gap-3 py-3 ">

@@ -9,6 +9,7 @@ import Home from "./components/Home";
 import ComplaintList from "./components/ComplaintList";
 import Nav from "./components/Nav";
 import Complaint from "./components/Complaint";
+import Issue from "./components/Issue";
 
 const router = createBrowserRouter([
   {
@@ -63,6 +64,15 @@ const router = createBrowserRouter([
           <div className="md:min-h-[100vh] min-h-full bg-gray-100 ">
             <Nav />
             <ComplaintList />
+          </div>
+        ),
+      },
+      {
+        path: "/add-issue",
+        element: (
+          <div className="md:min-h-[100vh] min-h-full bg-gray-100 ">
+            <Nav />
+            <Issue />
           </div>
         ),
       },
