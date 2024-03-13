@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./components/Login";
 import Main from "./layouts/Main";
 import SpeechChatbot from "./components/SpeechChatbot";
+import Chatbot from "./components/Chatbot";
 
 const router = createBrowserRouter([
 	{
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
 			{
 				path: "/joytest",
 				element: <SpeechChatbot />,
+			},
+      {
+				path: "/chatbot",
+				element: <Chatbot />,
 			},
 		],
 	},
