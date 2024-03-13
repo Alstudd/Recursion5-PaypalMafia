@@ -1,10 +1,10 @@
-
+import Navbar from "./components/Navbar";
 
 function App() {
 
   return (
     <>
-      <p className="text-yellow-600">Hi</p>
+      <Navbar/>
     </>
   )
 }
