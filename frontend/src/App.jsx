@@ -6,7 +6,7 @@ import SpeechChatbot from "./components/SpeechChatbot";
 const router = createBrowserRouter([
 	{
 		path: "/",
-		element: <div className=""></div>,
+		element: <Main />,
 		children: [
 			{
 				path: "/",
