@@ -21,7 +21,7 @@ const Hero = () => {
             </span>
           </p>
         </div>
-        <a href="#">
+        <a href="/user-dashboard">
           <div className="p-2 w-fit bg-black gap-3 backdrop-blur-md flex rounded-full z-10 relative top-7 bg-opacity-30">
             <div className="bg-white h-14 rounded-full py-2 pl-4 px-5 w-fit flex items-center justify-center cursor-pointer">
               <img src="/restros.svg" alt="" className="mr-2 max-sm:hidden" />
