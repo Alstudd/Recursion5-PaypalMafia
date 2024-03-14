@@ -1,0 +1,14 @@
+# Node.js
+node_modules
+npm-debug.log
+yarn-error.log
+
+# MongoDB
+*.env
+
+# Express.js
+dist/
+
+# React.js
+build
+package-lock.json
