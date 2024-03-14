@@ -8,6 +8,7 @@ import { db } from "../firebase";
 const Dashboard = () => {
   const colRef = collection(db, "issue");
   const [complaintArr, setComplaintArr] = useState([]);
+  const [ration, setRation] = useState(null);
 
   const countStatus = (setComplaintArr) => {
     let newPositive = 0;
@@ -160,16 +161,25 @@ const Dashboard = () => {
       "Solved Issues": OthersSolved,
     },
   ];
+  
+  let newRat;
 
-  let ration;
+useEffect(() => {
+  const ratio = () => {
+    // Assuming newPositive and Total are defined elsewhere
+    newRat = ((newPositive / Total).toFixed(2)) * 100;
+    setRation(newRat);
+  };
 
-  useEffect(() => {
-      const ratio = () => {
-        // Assuming newPositive and Total are defined elsewhere
-        ration =  ((newPositive  /  Total).toFixed(2))*100 ;
-        return ration;
-      };
-  }, []);
+  // Delay the execution of ratio() by 200ms
+  const timeoutId = setTimeout(() => {
+    ratio();
+  }, 100);
+
+  // Clear the timeout if component unmounts or dependency changes
+  return () => clearTimeout(timeoutId);
+}, [newPositive, Total]); // Use newPositive and Total as dependencies
+
 
   
 
@@ -249,7 +259,7 @@ const Dashboard = () => {
               Problem Solving Ratio
             </p>
             <p className="text-3xl mb-4 text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">
-              {ratio()}%
+            {ration}%
             </p>
             <p className="text-tremor-default text-tremor-content dark:text-dark-tremor-content">
               This is the ratio of the number of problems solved to the total number of problems
