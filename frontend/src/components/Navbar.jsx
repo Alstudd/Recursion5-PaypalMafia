@@ -17,7 +17,10 @@ const Navbar = () => {
         const token = credential.accessToken;
         // The signed-in user info.
         const user = result.user;
+        // console.log(user)
         sessionStorage.setItem("userEmail",user.email)
+        sessionStorage.setItem("name",user?.displayName)
+        sessionStorage.setItem("photo",user?.photoURL)
         // IdP data available using getAdditionalUserInfo(result)
         // ...
       }).catch((error) => {

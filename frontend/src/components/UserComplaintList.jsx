@@ -113,7 +113,7 @@ const UserComplaintList = () => {
                       <div className="flex-shrink-0">
                         <img
                           className="w-8 h-8 rounded-full"
-                          src={values.title}
+                          src={sessionStorage.getItem("photo")}
                           alt={values.title}
                         />
                       </div>
