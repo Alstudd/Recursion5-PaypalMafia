@@ -20,6 +20,8 @@ const Login = () => {
 			if (user) {
 				setUserAuth(user);
 				setUserName(user.email);
+                console.log(user)
+                sessionStorage.setItem("userEmail",userName)
 			} else {
 				setUserAuth(null);
 			}

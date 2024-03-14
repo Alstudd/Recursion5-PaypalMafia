@@ -52,7 +52,7 @@ const Complaint = () => {
     try {
       const docRef = doc(db, "issue", myId);
       await updateDoc(docRef, {
-        Status: stat,
+        status: stat,
       });
       alert("Project Updated successfully");
     } catch (e) {
