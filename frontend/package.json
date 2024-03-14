@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@aws-sdk/client-lex-runtime-v2": "^3.533.0",
     "@google/generative-ai": "^0.3.0",
     "@headlessui/react": "^1.7.18",
     "@headlessui/tailwindcss": "^0.2.0",
@@ -26,6 +27,7 @@
     "lucide-react": "^0.356.0",
     "markdown-it": "^14.0.0",
     "microsoft-cognitiveservices-speech-sdk": "^1.36.0",
+    "pako": "^2.1.0",
     "react": "^18.2.0",
     "react-accessible-accordion": "^5.0.0",
     "react-dom": "^18.2.0",
@@ -35,7 +37,8 @@
     "react-router-dom": "^6.22.3",
     "react-speech": "^1.0.2",
     "swiper": "^11.0.7",
-    "three": "^0.162.0"
+    "three": "^0.162.0",
+    "uzip": "^0.20201231.0"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.7",

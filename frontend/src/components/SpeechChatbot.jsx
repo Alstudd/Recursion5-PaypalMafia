@@ -101,7 +101,7 @@ export default function SpeechChatbot({ getSpeechValue }) {
 			clearTimeout(stopListeningTimer); // Clear the timer
 			recognizer.current.stopContinuousRecognitionAsync(() => {
 				setIsListening(false);
-				getSpeechValue({text: myTranscript, lang: selectedLanguage});
+				getSpeechValue({ text: myTranscript, lang: selectedLanguage });
 			});
 		};
 	};
@@ -110,7 +110,7 @@ export default function SpeechChatbot({ getSpeechValue }) {
 		setIsListening(false);
 		recognizer.current.stopContinuousRecognitionAsync(() => {
 			console.log("Speech recognition stopped.");
-			getSpeechValue({text: myTranscript, lang: selectedLanguage});
+			getSpeechValue({ text: myTranscript, lang: selectedLanguage });
 		});
 		setIsOpen(false);
 	};
