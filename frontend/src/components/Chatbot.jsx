@@ -4,6 +4,7 @@ import md from "markdown-it";
 import "../styles/style.css";
 // import "dotenv/config";
 import SpeechChatbot from "./SpeechChatbot";
+import axios from "axios";
 
 // Initialize the model
 // console.log(import.meta.env.VITE_GOOGLE_API_KEY);
@@ -64,8 +65,40 @@ const Chatbot = () => {
 	let chatArea = useRef();
 	let chatForm = useRef();
 
-	const getSpeechValue = (text) => {
-		setSpeechValue(text);
+	const translate = async (text, lang) => {
+		let url = `https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=${lang}`;
+		let data = [{ Text: text }];
+		let config = {
+			headers: {
+				"Ocp-Apim-Subscription-Key": "ea89c26c6a294d708457de739a84dc9d",
+				"Content-Type": "application/json",
+				"Ocp-Apim-Subscription-Region": "eastus",
+			},
+		};
+		let res = await axios.post(url, data, config).then((e) => {
+			return e.data[0].translations[0].text;
+		});
+		console.log(res);
+		return res;
+	};
+
+	const getSpeechValue = async (data) => {
+		console.log(data);
+		const text = data.text;
+		const lang = data.lang.split("-")[0];
+
+		if (lang != "en") {
+			const tOut = await translate(text, "en");
+			// await getUtterence("I want to lodge a complaint");
+			const res = await axios.post(
+				"https://publicsquare.azurewebsites.net/api/getUt",
+				{
+					text: "I want to make a complaint",
+				}
+			);
+			if (res.data == "ComplaintIntent") {
+			}
+		}
 	};
 
 	async function handleSubmit(event) {
@@ -160,7 +193,9 @@ const Chatbot = () => {
 										>
 											<div className="flex gap-4 w-full items-center">
 												<SpeechChatbot
-													getResponse={getSpeechValue}
+													getSpeechValue={
+														getSpeechValue
+													}
 												/>
 												<input
 													placeholder="Ask your question?"
