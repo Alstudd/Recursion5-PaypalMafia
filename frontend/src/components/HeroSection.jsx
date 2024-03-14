@@ -18,10 +18,10 @@ export default function HeroSection() {
           </div>
           <h1
             className="font-bold text-4xl leading-[3rem] tracking-[-0.06rem] md:leading-[3.75rem] 2xl:leading-[4.5rem] 2xl:text-6xl md:text-5xl">
-            Discover the Achievements of SE Comp-C Students
+            Discover the Platform where you belong
           </h1>
           <p
-            className="text-slate-600 font-normal"><i>COMP-C</i> brings to you a platform where <i>Code Meets Creativity</i>. This website also provides the resources and opportunities needed for our academic growth.</p>
+            className="text-slate-600 font-normal"><i>Public Square</i> brings to you a Decentralized Local Complaint Management System. This website helps the public to file complaints and resolve them.</p>
         </div>
         <div
         className="flex flex-row gap-4 py-1 pl-4 md:py-4">
