@@ -4,7 +4,7 @@ import "../styles/globals.css";
 const Hero = () => {
   return (
     <div className="w-full -mt-24">
-      <div className="flex flex-col items-center justify-center h-[620px] bgimg px-4 mb-16 max-sm:mt-4">
+      <div className="flex flex-col items-center justify-center h-[820px] bgimg px-4 mb-16 max-sm:mt-4">
         <div className="mx-auto px-4 py-1 bg-white bg-opacity-20 rounded-full text-md text-white mb-2 backdrop-blur-sm cursor-pointer max-sm:text-sm">
           <a href="#">Public Square is working on a revloution 🚀👨‍💻</a>
         </div>
