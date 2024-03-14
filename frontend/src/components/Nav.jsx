@@ -17,6 +17,7 @@ const Nav = () => {
         const token = credential.accessToken;
         // The signed-in user info.
         const user = result.user;
+        sessionStorage.setItem("userEmail",user.email)
         // IdP data available using getAdditionalUserInfo(result)
         // ...
       }).catch((error) => {
@@ -53,6 +54,7 @@ const Nav = () => {
     signOut(auth)
       .then(() => {
         console.log("Signout Success");
+        sessionStorage.clear()
       })
       .catch((e) => console.log(e));
   };

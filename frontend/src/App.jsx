@@ -12,6 +12,8 @@ import Complaint from "./components/Complaint";
 import Issue from "./components/Issue";
 import UserDashboard from "./components/UserDashboard";
 import DummyData from "./components/DummyData";
+import UserComplaintList from "./components/UserComplaintList";
+import UserComplaint from "./components/UserComplaint";
 
 const router = createBrowserRouter([
   {
@@ -95,6 +97,24 @@ const router = createBrowserRouter([
             <DummyData />
           </div>
         ),
+      },
+      {
+        path: "/user-complaint",
+        element: (
+          <div className="md:min-h-[100vh] min-h-full bg-gray-100 ">
+            <Nav />
+            <UserComplaintList />
+          </div>
+        ),
+      },
+      {
+        element: (
+          <div className="md:min-h-[100vh] min-h-full bg-gray-100 ">
+            <Nav />
+            <UserComplaint />
+          </div>
+        ),
+        path: "user-complaint/:complaintId",
       },
     ],
   },
