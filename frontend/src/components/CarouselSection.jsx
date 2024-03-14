@@ -17,7 +17,7 @@ export default function Slider() {
           <SwiperSlide key={i}>
             <div className="w-[25rem] opp-card hover:scale-[1.025] hover:cursor-pointer flex flex-col px-[1rem] pb-[1rem] pt-[1.3rem] m-auto">
               <img
-                className="w-[25rem] h-[20rem] rounded-tr-[15px] rounded-tl-[15px]"
+                className="w-[25rem] h-[20rem] rounded-tr-[15px] rounded-tl-[15px] object-cover"
                 src={card.imgUrl}
                 alt="cardImg"
               />

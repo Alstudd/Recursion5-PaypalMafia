@@ -12,7 +12,8 @@ function Home() {
         <div>
             <Navbar />
             <Hero />
-            {/* <HeroSection /> */}
+            <div className="py-6"></div>
+            <HeroSection />
             <CarouselSection />
             <Services />
             <StartYourJourney />

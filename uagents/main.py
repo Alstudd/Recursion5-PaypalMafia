@@ -3,6 +3,7 @@ from transformers import pipeline
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
+import json
 
 pipe = pipeline("text-classification", model="Rishi-19/Profanity_Detection_Model_2")
 good_guy = Agent(name="good_guy")
