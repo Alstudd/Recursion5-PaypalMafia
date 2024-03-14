@@ -48,23 +48,44 @@ const Dashboard = () => {
 
   const countLoc = (setComplaintArr) => {
     let Nalla = 0;
+    let NallaSolved = 0;
     let Malad = 0;
+    let MaladSolved = 0;
     let Andheri = 0;
+    let AndheriSolved = 0;
     let Others = 0;
+    let OthersSolved = 0;
+    let Total = 0;
     for (let i = 0; i < setComplaintArr.length; i++) {
       if (setComplaintArr[i].location === "Nallasopara" ) {
         Nalla += 1;
+        Total += 1;
+        if (setComplaintArr[i].status === true ) {
+            NallaSolved += 1;
+        }
       } else if (setComplaintArr[i].location === "Malad") {
         Malad += 1;
+        Total += 1;
+        if (setComplaintArr[i].status === true ) {
+            MaladSolved += 1;
+        }
       } else if (setComplaintArr[i].location === "Andheri" ) {
         Andheri += 1;
+        Total += 1;
+        if (setComplaintArr[i].status === true ) {
+            AndheriSolved += 1;
+        }
       } else {
         Others += 1;
+        Total += 1;
+        if (setComplaintArr[i].status === true ) {
+            OthersSolved += 1;
+        }
       }
     }
-    return { Nalla, Malad, Andheri, Others };
+    return { Nalla, Malad, Andheri, Others, Total, NallaSolved, MaladSolved, AndheriSolved, OthersSolved};
   };
-  const { Nalla, Malad, Andheri, Others } = countLoc(complaintArr);
+  const { Nalla, Malad, Andheri, Others, Total, NallaSolved, MaladSolved, AndheriSolved, OthersSolved } = countLoc(complaintArr);
 
   useEffect(() => {
     getDocs(colRef)
@@ -117,28 +138,38 @@ const Dashboard = () => {
 
   const [value, setValue] = useState(null);
 
-  const chartdata = [
+  const LocSolved = [
     {
       location: 'Nallasopara',
-      Issues: 2890,
-      "The Pragmatic Engineer": 2338,
+      Issues: Nalla,
+      "Solved Issues": NallaSolved,
     },
     {
       location: 'Malad',
-      Issues: 2756,
-      "The Pragmatic Engineer": 2103,
+      Issues: Malad,
+      "Solved Issues": MaladSolved,
     },
     {
       location: 'Andheri',
-      Issues: 3322,
-      "The Pragmatic Engineer": 2194,
+      Issues: Andheri,
+      "Solved Issues": AndheriSolved,
     },
     {
-      location: "Apr 22",
-      Issues: 3470,
-      "The Pragmatic Engineer": 2108,
+      location: "Others",
+      Issues: Others,
+      "Solved Issues": OthersSolved,
     },
   ];
+
+  let ration;
+
+  const ratio = () => {
+    // Assuming newPositive and Total are defined elsewhere
+    ration =  ((newPositive  /  Total).toFixed(2))*100 ;
+    return ration;
+  };
+
+  
 
   const valueFormatter = function (number) {
     return new Intl.NumberFormat("us").format(number).toString();
@@ -156,7 +187,7 @@ const Dashboard = () => {
                 Problems in Nallasopara Region
               </p>
               <p className="text-3xl text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">
-                {Nalla}
+                {Nalla} / {Total}
               </p>
             </Card>
             <Card className="mx-auto" decorationColor="indigo">
@@ -164,7 +195,7 @@ const Dashboard = () => {
               Problems in Malad Region
               </p>
               <p className="text-3xl text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">
-                {Malad}
+                {Malad} / {Total}
               </p>
             </Card>
             <Card className="mx-auto" decorationColor="indigo">
@@ -172,24 +203,24 @@ const Dashboard = () => {
               Problems in Andheri Region
               </p>
               <p className="text-3xl text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">
-                {Andheri}
+                {Andheri} / {Total}
               </p>
             </Card>
           </div>
           <div className="grid md:grid-cols-2 gap-3">
             <Card>
               <h3 className="text-tremor-default text-tremor-content dark:text-dark-tremor-content">
-                Newsletter Revenue
+                Issue Tracker
               </h3>
               <p className="text-tremor-metric text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">
-                $34,567
+                {Total}
               </p>
               <AreaChart
                 className="mt-4 h-72"
-                data={chartdata}
+                data={LocSolved}
                 index="location"
                 yAxisWidth={60}
-                categories={["Issues", "The Pragmatic Engineer"]}
+                categories={["Issues", "Solved Issues"]}
                 colors={["indigo", "cyan"]}
                 valueFormatter={valueFormatter}
               />
@@ -213,15 +244,13 @@ const Dashboard = () => {
         <div className="grid gap-3">
           <Card className="mx-auto" decorationColor="indigo">
             <p className="text-tremor-default text-tremor-content dark:text-dark-tremor-content">
-              Sales
+              Problem Solving Ratio
             </p>
             <p className="text-3xl mb-4 text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">
-              $34,743
+              {ratio()}%
             </p>
             <p className="text-tremor-default text-tremor-content dark:text-dark-tremor-content">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
-              quisquam ipsam voluptatum esse porro incidunt assumenda dolorem
-              perferendis asperiores necessitatibus, fuga provident molestias
+              This is the ratio of the number of problems solved to the total number of problems
             </p>
           </Card>
           <Card className="h-full">
