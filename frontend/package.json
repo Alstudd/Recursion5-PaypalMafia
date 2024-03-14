@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-lex-runtime-v2": "^3.533.0",
+    "@formspree/react": "^2.5.1",
     "@google/generative-ai": "^0.3.0",
     "@headlessui/react": "^1.7.18",
     "@headlessui/tailwindcss": "^0.2.0",
