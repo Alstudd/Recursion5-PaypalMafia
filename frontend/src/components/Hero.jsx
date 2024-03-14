@@ -4,7 +4,7 @@ import "../styles/globals.css";
 const Hero = () => {
   return (
     <div className="w-full -mt-24">
-      <div className="flex flex-col items-center justify-center h-[620px] bgimg px-4 mb-16 max-sm:mt-4">
+      <div className="flex flex-col items-center justify-center h-[850px] bgimg px-4 mb-16 max-sm:mt-4">
         <div className="mx-auto px-4 py-1 bg-white bg-opacity-20 rounded-full text-md text-white mb-2 backdrop-blur-sm cursor-pointer max-sm:text-sm">
           <a href="#">Public Square is working on a revloution 🚀👨‍💻</a>
         </div>
@@ -21,7 +21,7 @@ const Hero = () => {
             </span>
           </p>
         </div>
-        <a href="#">
+        <a href="/user-dashboard">
           <div className="p-2 w-fit bg-black gap-3 backdrop-blur-md flex rounded-full z-10 relative top-7 bg-opacity-30">
             <div className="bg-white h-14 rounded-full py-2 pl-4 px-5 w-fit flex items-center justify-center cursor-pointer">
               <img src="/restros.svg" alt="" className="mr-2 max-sm:hidden" />

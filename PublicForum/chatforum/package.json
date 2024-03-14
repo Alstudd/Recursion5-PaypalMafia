@@ -1,0 +1,29 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend for travel Buddy",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.6",
+    "countries-list": "^3.0.6",
+    "country-list": "^2.3.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
+    "fs": "^0.0.1-security",
+    "http": "^0.0.1-security",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.1.0",
+    "node-fetch": "^3.3.2",
+    "nodecron": "^0.2.0",
+    "path": "^0.12.7"
+  }
+}

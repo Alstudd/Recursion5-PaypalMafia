@@ -26,7 +26,7 @@ export default function HeroSection() {
         <div
         className="flex flex-row gap-4 py-1 pl-4 md:py-4">
           <button className="py-2.5 px-5 rounded-lg bg-white border border-[#D0D5DD]"><a href="https://github.com/Alstudd/Recursion-5.0-Paypal-Mafia" target='_blank'><div className='flex gap-3'><div className='zoom-in'><figure className='pt-1'><FaGithub /></figure></div><div>Github</div></div></a></button>
-          <button className="py-2.5 px-5 rounded-lg bg-blue-500 text-white hover:text-black hover:bg-white hover:border-[#D0D5DD]"><a href="/contact">Contact Us</a></button>
+          <button className="py-2.5 px-5 rounded-lg bg-blue-500 text-white hover:text-black hover:bg-white hover:border-[#D0D5DD]"><a href="/add-issue">Add Issue</a></button>
         </div>
       </div>
       <div
