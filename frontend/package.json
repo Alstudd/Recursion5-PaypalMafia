@@ -17,6 +17,7 @@
     "@tremor/react": "^3.14.1",
     "axios": "^1.6.7",
     "dotenv": "^16.4.5",
+    "ethers": "^6.11.1",
     "firebase": "^10.8.1",
     "framer-motion": "^11.0.12",
     "lucide-react": "^0.356.0",

@@ -8,11 +8,6 @@ import json
 pipe = pipeline("text-classification", model="Rishi-19/Profanity_Detection_Model_2")
 good_guy = Agent(name="good_guy")
 
-with open("cred.json", "r") as file:
-  json_data = file.read()
-
-creds_dict = json.loads(json_data)
-
 cred = credentials.Certificate('./cred.json')
 firebase_admin.initialize_app(cred)
 db = firestore.client()
