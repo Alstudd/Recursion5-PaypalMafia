@@ -21,7 +21,7 @@ async def clean(ctx: Context):
     flagged = []
 
     for doc in docs:
-        review = doc.to_dict().get('text')
+        review = doc.to_dict().get('review')
         owner = doc.to_dict().get('owner')
 
         status = pipe(review)[0]['label']

@@ -60,19 +60,22 @@ export default function SpeechChatbot({ getSpeechValue }) {
 			audioConfig.current
 		);
 
-		const processRecognizedTranscript = (event) => {
-			const result = event.result;
+		// const processRecognizedTranscript = (event) => {
+		// 	const result = event.result;
 
-			if (result.reason === sdk.ResultReason.RecognizedSpeech) {
-				const transcript = result.text;
-				setMyTranscript(transcript);
-			}
-		};
+		// 	if (result.reason === sdk.ResultReason.RecognizedSpeech) {
+		// 		const transcript = result.text;
+		// 		setMyTranscript(transcript);
+		// 	}
+		// };
 
 		const processRecognizingTranscript = (event) => {
 			const result = event.result;
 			console.log("Recognition result:", result);
-			if (result.reason === sdk.ResultReason.RecognizingSpeech) {
+			if (
+				result.reason === sdk.ResultReason.RecognizingSpeech &&
+				result.text != ""
+			) {
 				const transcript = result.text;
 				console.log("Transcript: -->", transcript);
 
@@ -80,8 +83,8 @@ export default function SpeechChatbot({ getSpeechValue }) {
 			}
 		};
 
-		recognizer.current.recognized = (s, e) =>
-			processRecognizedTranscript(e);
+		// recognizer.current.recognized = (s, e) =>
+		// 	processRecognizedTranscript(e);
 		recognizer.current.recognizing = (s, e) =>
 			processRecognizingTranscript(e);
 	}, [selectedLanguage]);
@@ -101,7 +104,10 @@ export default function SpeechChatbot({ getSpeechValue }) {
 			clearTimeout(stopListeningTimer); // Clear the timer
 			recognizer.current.stopContinuousRecognitionAsync(() => {
 				setIsListening(false);
-				getSpeechValue({ text: myTranscript, lang: selectedLanguage });
+				getSpeechValue({
+					text: recognizingTranscript,
+					lang: selectedLanguage,
+				});
 			});
 		};
 	};
@@ -110,7 +116,10 @@ export default function SpeechChatbot({ getSpeechValue }) {
 		setIsListening(false);
 		recognizer.current.stopContinuousRecognitionAsync(() => {
 			console.log("Speech recognition stopped.");
-			getSpeechValue({ text: myTranscript, lang: selectedLanguage });
+			getSpeechValue({
+				text: recognizingTranscript,
+				lang: selectedLanguage,
+			});
 		});
 		setIsOpen(false);
 	};

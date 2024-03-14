@@ -60,6 +60,13 @@ export const aiDiv = (data) => {
 
 const Chatbot = () => {
 	const [speechValue, setSpeechValue] = useState();
+	const [formCodes, setformCodes] = useState({
+		"Please give a title of your complaint": "",
+		"Please give a desc of your complaint": "",
+		"Department of your issue": "",
+	});
+	const [wait, setWait] = useState(false);
+	const [waitNo, setWaitNo] = useState(0);
 
 	let userMessage = useRef();
 	let chatArea = useRef();
@@ -93,10 +100,31 @@ const Chatbot = () => {
 			const res = await axios.post(
 				"https://publicsquare.azurewebsites.net/api/getUt",
 				{
-					text: "I want to make a complaint",
+					text: tOut,
 				}
 			);
-			if (res.data == "ComplaintIntent") {
+			if (res.data == "ComplaintIntent" && waitNo == 0) {
+				chatArea.current.innerHTML += userDiv(text);
+				setWaitNo(1);
+				let aiPrompt = await translate(Object.keys(formCodes)[0], lang);
+				chatArea.current.innerHTML += aiDiv(aiPrompt);
+			} else if (waitNo != 0) {
+				chatArea.current.innerHTML += userDiv(text);
+				let tNo = waitNo % 3;
+				if (tNo == 0) {
+					let aiPrompt = await translate(
+						"Complaint ticket raised",
+						lang
+					);
+					chatArea.current.innerHTML += aiDiv(aiPrompt);
+				} else {
+					let aiPrompt = await translate(
+						Object.keys(formCodes)[waitNo],
+						lang
+					);
+					chatArea.current.innerHTML += aiDiv(aiPrompt);
+				}
+				setWaitNo(tNo);
 			}
 		}
 	};
@@ -104,32 +132,38 @@ const Chatbot = () => {
 	async function handleSubmit(event) {
 		event.preventDefault();
 
-		var prompt = userMessage.current.value.trim();
-		if (prompt === "") {
-			return;
-		}
+		// var prompt = userMessage.current.value.trim();
+		// if (prompt === "") {
+		// 	return;
+		// }
 
-		console.log("user message", prompt);
+		// console.log("user message", prompt);
 
-		chatArea.current.innerHTML += userDiv(prompt);
-		userMessage.current.value = "";
-		const aiResponse = await getResponse(prompt);
-		let md_text = md().render(aiResponse);
-		chatArea.current.innerHTML += aiDiv(md_text);
+		// chatArea.current.innerHTML += userDiv(prompt);
+		// userMessage.current.value = "";
+		// if (waitNo != 0) {
+		// 	setWaitNo(waitNo + 1);
+		// 	chatArea.current.innerHTML += aiDiv(
+		// 		Object.keys(formCodes)[waitNo + 1]
+		// 	);
+		// }
+		// const aiResponse = await getResponse(prompt);
+		// let md_text = md().render(aiResponse);
+		// chatArea.current.innerHTML += aiDiv(md_text);
 
-		let newUserRole = {
-			role: "user",
-			parts: prompt,
-		};
-		let newAIRole = {
-			role: "model",
-			parts: aiResponse,
-		};
+		// let newUserRole = {
+		// 	role: "user",
+		// 	parts: prompt,
+		// };
+		// let newAIRole = {
+		// 	role: "model",
+		// 	parts: aiResponse,
+		// };
 
-		history.push(newUserRole);
-		history.push(newAIRole);
+		// history.push(newUserRole);
+		// history.push(newAIRole);
 
-		console.log(history);
+		// console.log(history);
 	}
 
 	function handleKeyup(event) {
