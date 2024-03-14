@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Boxes,
   Instagram,
@@ -8,9 +8,59 @@ import {
   ReceiptText,
   Sliders,
 } from "lucide-react";
+import {
+  updateDoc,
+  doc,
+  getDoc,
+  getDocs,
+  collection,
+} from "firebase/firestore";
+import { db } from "../firebase";
 import { Card } from "@tremor/react";
+import { useParams } from "react-router-dom";
 
 const Complaint = () => {
+  const { complaintId } = useParams();
+  const myId = complaintId;
+
+  const [stat, setStat] = useState(null);
+  const [arr, setArr] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const colRef = collection(db, "issue");
+        const snapshot = await getDocs(colRef);
+        let issues = [];
+        snapshot.docs.forEach((doc) => {
+          if (doc.id == myId) {
+            projects.push({ ...doc.data(), id: doc.id });
+          }
+        });
+        setArr(issues);
+        console.log(issues);
+      } catch (err) {
+        console.log(err.message);
+      }
+    };
+
+    fetchData();
+  }, [myId]);
+
+  const submitForm = async (e) => {
+    e.preventDefault();
+    try {
+      const docRef = doc(db, "issue", myId);
+      await updateDoc(docRef, {
+        Status: stat,
+      });
+      alert("Project Updated successfully");
+    } catch (e) {
+      alert("Project not Updated successfully");
+      console.log(e);
+    }
+    e.target.reset();
+  };
   const cmpl = [
     {
       complaintName: "Water is not working",
@@ -92,30 +142,39 @@ const Complaint = () => {
             );
           })}
         </div>
-        <div className="md:hidden w-[95%] mx-auto flex flex-row gap-2">
-            <p className="ml-1 text-md text-tremor-content dark:text-dark-tremor-content">
-              Solved the problem :
-            </p>
-            <button
-              type="button"
-              className="flex gap-3 text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"
-            >
-              Yes
-            </button>
-            <button
-              type="button"
-              className="flex gap-3 text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800"
-            >
-              Not yet
-            </button>
-          </div>
+        <form
+          onSubmit={submitForm}
+          className="md:hidden w-[95%] mx-auto flex flex-row gap-2"
+        >
+          <p className="ml-1 text-md text-tremor-content dark:text-dark-tremor-content">
+            Solved the problem :
+          </p>
+          <button
+            type="button"
+            value={stat}
+            onClick={() => setStat(true)}
+            className="flex gap-3 text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"
+          >
+            Yes
+          </button>
+          <button
+            type="button"
+            value={stat}
+            onClick={() => setStat(false)}
+            className="flex gap-3 text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800"
+          >
+            Not yet
+          </button>
+        </form>
         <div className="absolute md:block hidden bottom-5 right-0">
-          <div className="flex flex-row gap-2">
+          <form onSubmit={submitForm} className="flex flex-row gap-2">
             <p className="text-lg text-tremor-content dark:text-dark-tremor-content">
               Solved the problem :
             </p>
             <button
               type="button"
+              value={stat}
+              onClick={() => setStat(true)}
               className="flex gap-3 text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"
             >
               <Sliders size={20} />
@@ -123,12 +182,14 @@ const Complaint = () => {
             </button>
             <button
               type="button"
+              value={stat}
+              onClick={() => setStat(false)}
               className="flex gap-3 text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800"
             >
               <Sliders size={20} />
               Not yet, We will work on it soon
             </button>
-          </div>
+          </form>
         </div>
       </div>
     </div>

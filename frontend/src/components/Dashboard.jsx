@@ -95,7 +95,7 @@ const Dashboard = () => {
           issues.push({ ...doc.data(), id: doc.id });
         });
         setComplaintArr(issues);
-        console.log(issues);
+        // console.log(issues);
       })
       .catch((err) => {
         console.log(err.message);
@@ -163,11 +163,13 @@ const Dashboard = () => {
 
   let ration;
 
-  const ratio = () => {
-    // Assuming newPositive and Total are defined elsewhere
-    ration =  ((newPositive  /  Total).toFixed(2))*100 ;
-    return ration;
-  };
+  useEffect(() => {
+      const ratio = () => {
+        // Assuming newPositive and Total are defined elsewhere
+        ration =  ((newPositive  /  Total).toFixed(2))*100 ;
+        return ration;
+      };
+  }, []);
 
   
 
