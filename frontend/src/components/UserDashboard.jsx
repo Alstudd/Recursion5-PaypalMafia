@@ -88,9 +88,9 @@ import { Card, AreaChart, DonutChart, BarChart } from "@tremor/react";
 
 const UserDashboard = ({ user, complaints, salesData, monthlyRevenueData, productDistributionData }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {/* User Profile Card */}
-      <Card className="p-4 col-span-1 md:col-span-2 lg:col-span-1 flex items-center justify-between">
+    <div className="md:w-[90%] w-[95%] mx-auto">
+    
+      <Card className="my-2 p-4 col-span-1 md:col-span-2 lg:col-span-1 flex items-center justify-between">
         <div className="flex items-center space-x-4">
           <img
             src={user.profilePic}
@@ -104,6 +104,8 @@ const UserDashboard = ({ user, complaints, salesData, monthlyRevenueData, produc
         </div>
         {/* Add any additional user actions/buttons here */}
       </Card>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {/* User Profile Card */}
 
       {/* Sales Overview Card */}
       <Card className="p-4">
@@ -156,6 +158,7 @@ const UserDashboard = ({ user, complaints, salesData, monthlyRevenueData, produc
           </table>
         </div>
       </Card>
+    </div>
     </div>
   );
 };
