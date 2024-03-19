@@ -35,7 +35,7 @@ const Hero = () => {
             </div>
             <div className="bg-transparent h-14 rounded-full py-2 pl-4 px-5 w-fit flex items-center justify-center hover:hover:border cursor-pointer">
               <img src="/stays.svg" alt="" className="mr-2 max-sm:hidden" />
-              <div className="text-sm text-white max-sm:text-sm">Sentimental</div>
+              <div className="text-sm text-white max-sm:text-sm">Dashboard</div>
             </div>
             <div className="bg-transparent h-14 rounded-full py-2 pl-4 px-5 w-fit flex items-center justify-center hover:hover:border cursor-pointer">
               <img src="/attracts.svg" alt="" className="mr-2 max-sm:hidden" />
