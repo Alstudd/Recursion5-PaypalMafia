@@ -26,7 +26,7 @@ const Hero = () => {
           <div className="p-2 w-fit bg-black gap-3 backdrop-blur-md flex rounded-full z-10 relative top-7 bg-opacity-30">
           <a href="/">
             <div className="bg-white h-14 rounded-full py-2 pl-4 px-5 w-fit flex items-center justify-center cursor-pointer">
-              <Home className="mr-2 max-sm:hidden" />
+              <Home className="mr-2 max-sm:hidden text-blue-400" />
               <div className="text-sm text-blue-400 max-sm:text-sm">
                 Home
               </div>
