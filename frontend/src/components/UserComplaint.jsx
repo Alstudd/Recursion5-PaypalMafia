@@ -11,6 +11,7 @@ import {
 import {
   updateDoc,
   doc,
+  setDoc,
   getDoc,
   addDoc,
   getDocs,
@@ -55,10 +56,11 @@ const UserComplaint = () => {
     e.preventDefault();
     try {
       const docRef = doc(db, "issue", myId);
-      await updateDoc(docRef, {
+      await setDoc(docRef, {
         review: review,
         reviewDesc: reviewDesc,
-      });
+        revStat: true,
+      }, { merge: true });
 
       await addDoc(collection(db, "unfiltered_review"), {
         review: concatenatedText,

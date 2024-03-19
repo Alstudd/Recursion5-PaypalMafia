@@ -39,6 +39,7 @@ function Issue() {
 				type: type,
 				count: 1,
 				status: false,
+				revStat: false,
 			});
 
 			await contractInstance.createIssue(res.id, title, desc, userName);
@@ -51,6 +52,7 @@ function Issue() {
 				type: type,
 				count: 1,
 				status: false,
+				revStat: false,
 			});
 
 			// const newRef = collection(db, "Departments", {type});

@@ -60,7 +60,7 @@ const ComplaintList = () => {
                   scope="col"
                   className="text-start md:block hidden px-6 py-3"
                 >
-                  Count
+                  Location
                 </th>
                 {/* <th
                   scope="col"
@@ -72,7 +72,7 @@ const ComplaintList = () => {
                   scope="col"
                   className="md:text-start text-end md:px-6 px-2 py-3"
                 >
-                  Location
+                  Status
                 </th>
               </tr>
             </thead>
@@ -103,13 +103,15 @@ const ComplaintList = () => {
                     </th>
                     <td className="w-10 text-start md:block hidden px-6 py-4">
                       <div className="md:inline-flex items-center text-base font-semibold text-gray-900">
-                        {values.count}
-                      </div>
-                    </td>
-                    <td className="w-10 md:px-6 px-0 py-4 md:text-start text-end">
-                      <div className="inline-flex items-center text-base font-semibold text-gray-900">
                         {values.location}
                       </div>
+                    </td>
+                    <td
+                      className={`px-6 py-4 whitespace-nowrap text-sm ${
+                        values.status ? "text-green-500" : "text-red-500"
+                      }`}
+                    >
+                      {values.status ? "Solved" : "Pending"}
                     </td>
                     <td className="w-10 text-start px-6 py-4">
                       <a href={`complaints/${values.id}`} className="md:inline-flex py-2 items-center text-base font-light text-blue-700">

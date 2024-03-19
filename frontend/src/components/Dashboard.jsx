@@ -31,13 +31,25 @@ const Dashboard = () => {
     let newOthers = 0;
     let newGar = 0;
     for (let i = 0; i < setComplaintArr.length; i++) {
-      if (setComplaintArr[i].type === "Road" || setComplaintArr[i].type === 'fnsyV6Ze7Ufhkxcqnq20') {
+      if (
+        setComplaintArr[i].type === "Road" ||
+        setComplaintArr[i].type === "fnsyV6Ze7Ufhkxcqnq20"
+      ) {
         newRoad += 1;
-      } else if (setComplaintArr[i].type === "Water" || setComplaintArr[i].type === 'YU3EJbpcs7lTo7Pqbgow') {
+      } else if (
+        setComplaintArr[i].type === "Water" ||
+        setComplaintArr[i].type === "YU3EJbpcs7lTo7Pqbgow"
+      ) {
         newWat += 1;
-      } else if (setComplaintArr[i].type === "Electricity" || setComplaintArr[i].type === 'iIntcTRGv0z8mIRXvYtL') {
+      } else if (
+        setComplaintArr[i].type === "Electricity" ||
+        setComplaintArr[i].type === "iIntcTRGv0z8mIRXvYtL"
+      ) {
         newElec += 1;
-      } else if (setComplaintArr[i].type === "Garbage" || setComplaintArr[i].type === 'Ang7eN63LnIbkKPTcPvx') {
+      } else if (
+        setComplaintArr[i].type === "Garbage" ||
+        setComplaintArr[i].type === "Ang7eN63LnIbkKPTcPvx"
+      ) {
         newGar += 1;
       } else {
         newOthers += 1;
@@ -45,7 +57,8 @@ const Dashboard = () => {
     }
     return { newRoad, newElec, newGar, newWat, newOthers };
   };
-  const { newRoad, newElec, newGar, newWat, newOthers } = countCategory(complaintArr);
+  const { newRoad, newElec, newGar, newWat, newOthers } =
+    countCategory(complaintArr);
 
   const countLoc = (setComplaintArr) => {
     let Nalla = 0;
@@ -58,35 +71,55 @@ const Dashboard = () => {
     let OthersSolved = 0;
     let Total = 0;
     for (let i = 0; i < setComplaintArr.length; i++) {
-      if (setComplaintArr[i].location === "Nallasopara" ) {
+      if (setComplaintArr[i].location === "Nallasopara") {
         Nalla += 1;
         Total += 1;
-        if (setComplaintArr[i].status === true ) {
-            NallaSolved += 1;
+        if (setComplaintArr[i].status === true) {
+          NallaSolved += 1;
         }
       } else if (setComplaintArr[i].location === "Malad") {
         Malad += 1;
         Total += 1;
-        if (setComplaintArr[i].status === true ) {
-            MaladSolved += 1;
+        if (setComplaintArr[i].status === true) {
+          MaladSolved += 1;
         }
-      } else if (setComplaintArr[i].location === "Andheri" ) {
+      } else if (setComplaintArr[i].location === "Andheri") {
         Andheri += 1;
         Total += 1;
-        if (setComplaintArr[i].status === true ) {
-            AndheriSolved += 1;
+        if (setComplaintArr[i].status === true) {
+          AndheriSolved += 1;
         }
       } else {
         Others += 1;
         Total += 1;
-        if (setComplaintArr[i].status === true ) {
-            OthersSolved += 1;
+        if (setComplaintArr[i].status === true) {
+          OthersSolved += 1;
         }
       }
     }
-    return { Nalla, Malad, Andheri, Others, Total, NallaSolved, MaladSolved, AndheriSolved, OthersSolved};
+    return {
+      Nalla,
+      Malad,
+      Andheri,
+      Others,
+      Total,
+      NallaSolved,
+      MaladSolved,
+      AndheriSolved,
+      OthersSolved,
+    };
   };
-  const { Nalla, Malad, Andheri, Others, Total, NallaSolved, MaladSolved, AndheriSolved, OthersSolved } = countLoc(complaintArr);
+  const {
+    Nalla,
+    Malad,
+    Andheri,
+    Others,
+    Total,
+    NallaSolved,
+    MaladSolved,
+    AndheriSolved,
+    OthersSolved,
+  } = countLoc(complaintArr);
 
   useEffect(() => {
     getDocs(colRef)
@@ -141,17 +174,17 @@ const Dashboard = () => {
 
   const LocSolved = [
     {
-      location: 'Nallasopara',
+      location: "Nallasopara",
       Issues: Nalla,
       "Solved Issues": NallaSolved,
     },
     {
-      location: 'Malad',
+      location: "Malad",
       Issues: Malad,
       "Solved Issues": MaladSolved,
     },
     {
-      location: 'Andheri',
+      location: "Andheri",
       Issues: Andheri,
       "Solved Issues": AndheriSolved,
     },
@@ -161,27 +194,24 @@ const Dashboard = () => {
       "Solved Issues": OthersSolved,
     },
   ];
-  
+
   let newRat;
 
-useEffect(() => {
-  const ratio = () => {
-    // Assuming newPositive and Total are defined elsewhere
-    newRat = ((newPositive / Total).toFixed(2)) * 100;
-    setRation(newRat);
-  };
+  useEffect(() => {
+    const ratio = () => {
+      // Assuming newPositive and Total are defined elsewhere
+      newRat = (newPositive / Total).toFixed(2) * 100;
+      setRation(newRat);
+    };
 
-  // Delay the execution of ratio() by 200ms
-  const timeoutId = setTimeout(() => {
-    ratio();
-  }, 100);
+    // Delay the execution of ratio() by 200ms
+    const timeoutId = setTimeout(() => {
+      ratio();
+    }, 100);
 
-  // Clear the timeout if component unmounts or dependency changes
-  return () => clearTimeout(timeoutId);
-}, [newPositive, Total]); // Use newPositive and Total as dependencies
-
-
-  
+    // Clear the timeout if component unmounts or dependency changes
+    return () => clearTimeout(timeoutId);
+  }, [newPositive, Total]); // Use newPositive and Total as dependencies
 
   const valueFormatter = function (number) {
     return new Intl.NumberFormat("us").format(number).toString();
@@ -204,7 +234,7 @@ useEffect(() => {
             </Card>
             <Card className="mx-auto" decorationColor="indigo">
               <p className="text-tremor-default text-tremor-content dark:text-dark-tremor-content">
-              Problems in Malad Region
+                Problems in Malad Region
               </p>
               <p className="text-3xl text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">
                 {Malad} / {Total}
@@ -212,7 +242,7 @@ useEffect(() => {
             </Card>
             <Card className="mx-auto" decorationColor="indigo">
               <p className="text-tremor-default text-tremor-content dark:text-dark-tremor-content">
-              Problems in Andheri Region
+                Problems in Andheri Region
               </p>
               <p className="text-3xl text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">
                 {Andheri} / {Total}
@@ -259,10 +289,11 @@ useEffect(() => {
               Problem Solving Ratio
             </p>
             <p className="text-3xl mb-4 text-tremor-content-strong dark:text-dark-tremor-content-strong font-semibold">
-            {ration}%
+              {ration}%
             </p>
             <p className="text-tremor-default text-tremor-content dark:text-dark-tremor-content">
-              This is the ratio of the number of problems solved to the total number of problems
+              This is the ratio of the number of problems solved to the total
+              number of problems
             </p>
           </Card>
           <Card className="h-full">
@@ -364,13 +395,13 @@ useEffect(() => {
                   scope="col"
                   className="text-start md:block hidden px-6 py-3"
                 >
-                  Count
+                  Location
                 </th>
                 <th
                   scope="col"
                   className="md:text-start text-end md:px-6 px-2 py-3"
                 >
-                  Location
+                  Status
                 </th>
               </tr>
             </thead>
@@ -402,13 +433,15 @@ useEffect(() => {
                     </th>
                     <td className="w-10 text-start md:block hidden px-6 py-4">
                       <div className="md:inline-flex items-center text-base font-semibold text-gray-900">
-                        {values.count}
-                      </div>
-                    </td>
-                    <td className="w-10 md:px-6 px-0 py-4 md:text-start text-end">
-                      <div className="inline-flex items-center text-base font-semibold text-gray-900">
                         {values.location}
                       </div>
+                    </td>
+                    <td
+                      className={`px-6 py-4 whitespace-nowrap text-sm ${
+                        values.status ? "text-green-500" : "text-red-500"
+                      }`}
+                    >
+                      {values.status ? "Solved" : "Pending"}
                     </td>
                   </tr>
                 );
