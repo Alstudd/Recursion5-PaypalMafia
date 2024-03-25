@@ -1,4 +1,4 @@
-import { BookCheck, Bot } from "lucide-react";
+import { BookCheck, Bot, LogIn, LogOut } from "lucide-react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import logo from '../assets/logo.png'
 import React, { useEffect, useState } from "react";
@@ -78,7 +78,7 @@ const Navbar = () => {
             <li>
               <a
                 href="/dashboard"
-                className="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
+                className="block py-2 px-2 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
               >
                 <BookCheck />
               </a>
@@ -86,11 +86,28 @@ const Navbar = () => {
             <li>
               <a
                 href="/chatbot"
-                className="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
+                className="block py-2 px-2 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
               >
                 <Bot />
               </a>
             </li>
+            {userAuth ? (
+                <>
+                  <button
+                    className="block py-2 px-2 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
+                    onClick={userSignout}
+                  >
+                    <LogOut />
+                  </button>
+                </>
+              ) : (
+                <button
+                  onClick={userSignin}
+                  className="block py-2 px-3 text-white rounded-full hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
+                >
+                  <LogIn />
+                </button>
+              )}
           </ul>
           <div
             className="hidden w-full md:block md:w-auto"

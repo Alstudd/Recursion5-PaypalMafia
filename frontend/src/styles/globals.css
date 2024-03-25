@@ -13,7 +13,7 @@
     filter: drop-shadow(0 0 1.5rem #000000);
   }
   .textgrad{
-    background: linear-gradient(90deg, #F5F29D 0%, #FFA7EC 50.5%, #FFA7A7 98%);
+    background: linear-gradient(90deg, #F5F29D 0%, #f6ee0f 50.5%, #F5F29D 98%);
     background-clip: text;
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;

@@ -22,8 +22,8 @@ const Hero = () => {
             </span>
           </p>
         </div>
-        
-          <div className="p-2 w-fit bg-black gap-3 backdrop-blur-md flex rounded-full z-10 relative top-7 bg-opacity-30">
+
+        <div className="p-2 w-fit bg-black gap-3 backdrop-blur-md flex rounded-full z-10 relative top-7 bg-opacity-30">
           <a href="/">
             <div className="bg-white h-14 rounded-full py-2 pl-4 px-5 w-fit flex items-center justify-center cursor-pointer">
               <Home className="mr-2 max-sm:hidden text-blue-400" />
@@ -31,28 +31,28 @@ const Hero = () => {
                 Home
               </div>
             </div>
-            </a>
-            <a href="/chatbot">
+          </a>
+          <a href="/chatbot">
             <div className="bg-transparent h-14 rounded-full py-2 pl-4 px-5 w-fit flex items-center justify-center hover:border cursor-pointer text-white">
               <Bot alt="" className="mr-2 max-sm:hidden" />
-              <div className="text-sm text-white max-sm:text-sm">AI Chatbot</div>
+              <div className="text-sm text-white max-sm:text-sm">Chatbot</div>
             </div>
-            </a>
-            <a href="/dashboard">
+          </a>
+          <a className="sm:block hidden" href="/dashboard">
             <div className="bg-transparent h-14 rounded-full py-2 pl-4 px-5 w-fit flex items-center justify-center hover:hover:border cursor-pointer text-white">
               <LayoutDashboard className="mr-2 max-sm:hidden" />
               <div className="text-sm text-white max-sm:text-sm">Dashboard</div>
             </div>
-            </a>
-            <a href="/user-dashboard">
+          </a>
+          <a href="/user-dashboard">
             <div className="bg-transparent h-14 rounded-full py-2 pl-4 px-5 w-fit flex items-center justify-center hover:hover:border cursor-pointer text-white">
               <Rocket className="mr-2 max-sm:hidden" />
-              <div className="text-sm text-white max-sm:text-sm">
-                Automation
+              <div className="text-sm text-white max-sm:text-sm flex gap-1">
+                User <span>Dash</span>
               </div>
             </div>
-        </a>
-          </div>
+          </a>
+        </div>
         <div className="w-9/12 h-fit bg-white rounded-2xl shadow-2xl pl-4 pb-4">
           <div className="flex justify-around px-4 mt-10 max-md:flex-col ">
             <div>

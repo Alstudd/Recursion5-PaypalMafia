@@ -416,7 +416,7 @@ const Dashboard = () => {
                       <div className="flex-shrink-0">
                         <img
                           className="w-8 h-8 rounded-full"
-                          src={values.pic}
+                          src="/user.jpg"
                           alt={values.owner}
                         />
                       </div>
