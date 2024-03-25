@@ -58,7 +58,7 @@ const Login = () => {
 		<div>
 			<div className="md:w-[60%] w-[90%] mx-auto py-5">
 				<h1 className="font-bold text-xl mb-5 ">
-					Log-In to Tree Tally
+					Log-In to Public Square
 				</h1>
 				{userName}
 				<form onSubmit={LogIn}>

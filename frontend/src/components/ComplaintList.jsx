@@ -3,10 +3,41 @@ import { Card } from "@tremor/react";
 import React, { useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
 import { Fragment, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const ComplaintList = () => {
+  const [userAuth, setUserAuth] = useState(null);
+	const [userName, setUserName] = useState("");
+
+  const redirect = useNavigate();
+
+  useEffect(() => {
+    const listen = onAuthStateChanged(
+      auth,
+      (user) => {
+        if (user) {
+          setUserAuth(user);
+          setUserName(user.email);
+        } else {
+          redirect("/");
+          setTimeout(() => {
+            alert("Please login to continue!");
+          }, 500);
+          setUserAuth(null);
+        }
+      },
+      (error) => {
+        console.error("Auth state change error:", error);
+      }
+    );
+    return () => {
+      listen();
+    };
+  }, []);
+
     const colRef = collection(db, "issue");
   const [arr, setArr] = useState([]);
 

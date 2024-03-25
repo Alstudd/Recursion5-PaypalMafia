@@ -6,9 +6,13 @@ import { collection, getDocs } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import { Fragment, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const UserComplaintList = () => {
-    const [userAuth, setUserAuth] = useState(null);
+  const [userAuth, setUserAuth] = useState(null);
+	const [userName, setUserName] = useState("");
+
+  const redirect = useNavigate();
 
   useEffect(() => {
     const listen = onAuthStateChanged(
@@ -16,7 +20,12 @@ const UserComplaintList = () => {
       (user) => {
         if (user) {
           setUserAuth(user);
+          setUserName(user.email);
         } else {
+          redirect("/");
+          setTimeout(() => {
+            alert("Please login to continue!");
+          }, 500);
           setUserAuth(null);
         }
       },

@@ -1,7 +1,34 @@
-import React from 'react';
+import React, {  useState, useEffect } from "react";
 import UserDashboard from './UserDashboard';
+import { auth } from "../firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import { db } from "../firebase";
+import { useNavigate } from "react-router-dom";
 
 const DummyData = () => {
+
+  const [userAuth, setUserAuth] = useState(null);
+	const [userName, setUserName] = useState("");
+
+	const redirect = useNavigate();
+
+	useEffect(() => {
+		const listen = onAuthStateChanged(auth, (user) => {
+			if (user) {
+				setUserAuth(user);
+				setUserName(user.email);
+			} else {
+				redirect("/");
+				setTimeout(() => {
+					alert("Please login to continue!");
+				}, 500);
+				setUserAuth(null);
+			}
+		});
+		return () => {
+			listen();
+		};
+	});
   // Dummy user data
   const user = {
     name: 'John Doe',

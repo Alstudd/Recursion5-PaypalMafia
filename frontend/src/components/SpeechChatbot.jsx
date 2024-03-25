@@ -3,6 +3,10 @@ import * as sdk from "microsoft-cognitiveservices-speech-sdk";
 import { FaMicrophone, FaStop } from "react-icons/fa";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
+import { auth } from "../firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import { db } from "../firebase";
+import { useNavigate } from "react-router-dom";
 
 const SPEECH_KEY = "e448f4b6437a42a1a35e480d8ab91628";
 const SPEECH_REGION = "eastus";
@@ -123,6 +127,29 @@ export default function SpeechChatbot({ getSpeechValue }) {
 		});
 		setIsOpen(false);
 	};
+
+	const [userAuth, setUserAuth] = useState(null);
+	const [userName, setUserName] = useState("");
+
+	const redirect = useNavigate();
+
+	useEffect(() => {
+		const listen = onAuthStateChanged(auth, (user) => {
+			if (user) {
+				setUserAuth(user);
+				setUserName(user.email);
+			} else {
+				redirect("/");
+				setTimeout(() => {
+					alert("Please login to continue!");
+				}, 500);
+				setUserAuth(null);
+			}
+		});
+		return () => {
+			listen();
+		};
+	});
 
 	return (
 		<div>
