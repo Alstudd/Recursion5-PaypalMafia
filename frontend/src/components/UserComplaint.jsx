@@ -183,7 +183,7 @@ const UserComplaint = () => {
                         <div className="w-[400px] bg-white border border-gray-300 shadow-2xl rounded-lg h-fit p-4">
                           <div className="border-gray-300 px-4 py-4">
                             <div className="text-2xl font-semibold mb-6">
-                              Add an Review{" "}
+                              Add a Review{" "}
                               <span className="text-gray-600 font-normal text-xl">
                                 to get the best experience of{" "}
                               </span>
@@ -235,7 +235,7 @@ const UserComplaint = () => {
           className="md:hidden w-[95%] mx-auto flex flex-row gap-2"
         >
           <p className="ml-1 text-md text-tremor-content dark:text-dark-tremor-content">
-            Im happy with Solution :
+            I'm happy with the solution :
           </p>
           <button
             type="submit"
@@ -257,7 +257,7 @@ const UserComplaint = () => {
         <div className="absolute md:block hidden bottom-5 right-0">
           <form onSubmit={submitForm} className="flex flex-row gap-2">
             <p className="text-lg text-tremor-content dark:text-dark-tremor-content">
-              Im happy with Solution :
+              I'm happy with the solution :
             </p>
             <button
               type="submit"

@@ -144,7 +144,7 @@ const UserDashboard = ({
         </div>
         {/* Add any additional user actions/buttons here */}
       </Card>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {/* User Profile Card */}
 
         {/* Sales Overview Card */}
@@ -201,7 +201,7 @@ const UserDashboard = ({
 
         {/* Product Distribution Card */}
 
-        <Card className="h-full">
+        <Card className="h-full lg:col-span-1 sm:col-span-2 col-span-1">
           <h3 className="text-lg font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong">
             Completion Ratio
           </h3>
@@ -218,7 +218,7 @@ const UserDashboard = ({
             colors={["blue", "cyan"]}
             onValueChange={(v) => setValue(v)}
           />
-          <div className="md:grid grid-cols-2 gap-3">
+          <div className="grid md:grid-cols-2 grid-cols-1 gap-0 md:gap-3">
             <a
               href="/user-complaint"
               className="w-full text-center bg-gray-900 cursor-pointer font-medium hover:bg-slate-600 text-white rounded-md px-4 py-3 mt-4 text-sm"
@@ -235,7 +235,7 @@ const UserDashboard = ({
         </Card>
 
         {/* Complaint List Card */}
-        <Card className="p-4 col-span-3">
+        <Card className="md:block hidden p-4 col-span-1 sm:col-span-2 lg:col-span-3">
           <h2 className="text-lg font-semibold mb-4">Complaint List</h2>
           <a href="/user-complaint" className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200">
@@ -279,6 +279,46 @@ const UserDashboard = ({
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         {values.location}
+                      </td>
+                      <td
+                        className={`px-6 py-4 whitespace-nowrap text-sm ${
+                          values.status ? "text-green-500" : "text-red-500"
+                        }`}
+                      >
+                        {values.status ? "Solved" : "Pending"}
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </a>
+        </Card>
+        <Card className="md:hidden block p-4 col-span-1 sm:col-span-2 lg:col-span-3">
+          <h2 className="text-lg font-semibold mb-4">Complaint List</h2>
+          <a href="/user-complaint" className="overflow-x-auto">
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Complaint
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Status
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+                {arr &&
+                  arr.map((values) => (
+                    <tr key={values.id}>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {values.title}
                       </td>
                       <td
                         className={`px-6 py-4 whitespace-nowrap text-sm ${

@@ -6,7 +6,7 @@ import '../styles/animations.css';
 
 export default function HeroSection() {
   return (
-    <div className="flex flex-col items-start gap-10 py-5 px-18 md:flex-row md:gap-14 md:text-left xl:gap-40 md:py-20">
+    <div className="flex flex-col items-start pb-5 gap-10 px-18 md:flex-row md:gap-14 md:text-left xl:gap-40 ">
       <div className="py-4 pl-4 self-stretch flex flex-col items-start flex-[1_0_0] md:pl-32">
         <div className="py-4 flex flex-col items-start gap-4 md:py-0 pl-4">
           <div

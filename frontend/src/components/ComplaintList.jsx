@@ -117,7 +117,7 @@ const ComplaintList = () => {
                       <div className="flex-shrink-0">
                         <img
                           className="w-8 h-8 rounded-full"
-                          src={values.title}
+                          src="/user.jpg"
                           alt={values.title}
                         />
                       </div>
